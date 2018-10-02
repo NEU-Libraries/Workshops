@@ -12,11 +12,13 @@ The lessons are
 
 Each lesson is developed in Jupyter Notebook and has a "slides" version (used during the workshop) and the "instructor" version - which has all code.
 
+I've also included the data files in the "data" folder. 
+
 ## Additional Resources
 
 The Snell Library has a lot of additional resources for those interested in learning Python. There are a number of great videos and books in the [Safari Learning Platform](https://www.safaribooksonline.com/), which should be accessible on campus. You'll have to create an account using your Northeastern email but after that you shoud be set.
 
-Useful titles include: Learn Python the Hardway by Zed A. Shaw, Learn Python in 7 Days, and Learn to Program with Python 3. There are also titles like Learn Raspberry Pi Programming with Python, Learn Data Analysis with Python, and Python Business Intelligence Cookbook.
+Useful titles include: [Learn Python the Hard Way](https://onesearch.library.northeastern.edu/primo-explore/fulldisplay?docid=NEU_ALMA51284615730001401&context=L&vid=NU&search_scope=default_scope&tab=default_tab&lang=en_US) by Zed A. Shaw, [Learn Python in 7 Days](https://onesearch.library.northeastern.edu/primo-explore/fulldisplay?docid=NEU_ALMA51284615570001401&context=L&vid=NU&search_scope=default_scope&tab=default_tab&lang=en_US), and [Learn to Program with Python 3](https://onesearch.library.northeastern.edu/primo-explore/fulldisplay?docid=NEU_ALMA51286617110001401&context=L&vid=NU&search_scope=default_scope&tab=default_tab&lang=en_US). There are also titles like [Learn Raspberry Pi Programming with Python](https://onesearch.library.northeastern.edu/primo-explore/fulldisplay?docid=NEU_ALMA51213291000001401&context=L&vid=NU&search_scope=default_scope&tab=default_tab&lang=en_US), [Learn Data Analysis with Python](https://onesearch.library.northeastern.edu/primo-explore/fulldisplay?docid=NEU_ALMA51284568020001401&context=L&vid=NU&search_scope=default_scope&tab=default_tab&lang=en_US), and [Python Business Intelligence Cookbook](https://onesearch.library.northeastern.edu/primo-explore/fulldisplay?docid=NEU_ALMA51285006970001401&context=L&vid=NU&search_scope=default_scope&tab=default_tab&lang=en_US).
 
 ## Contact
 

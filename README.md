@@ -1,2 +1,1 @@
-# RI-Workshops
-R&amp;I workshops 
+# Northeastern Library Workshops 

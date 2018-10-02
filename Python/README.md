@@ -24,6 +24,6 @@ There are also titles like [Learn Raspberry Pi Programming with Python](https://
 
 ## Contact
 
-If you'd like to see this workshop run again or if you notice errors or issues, contact [Tom Hohenstein](mailto:t.hohenstein@northeastern.edu)
+If you'd like to see this workshop run again or if you notice errors or problems, contact [Tom Hohenstein](mailto:t.hohenstein@northeastern.edu) or create an issue. 
 
 

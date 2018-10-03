@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title></title>
+<meta name="author" content="(Hohenstein)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///Users/hohenstein/tomuments/templates/revealjs/css/reveal.css"/>
+
+<link rel="stylesheet" href="file:///Users/hohenstein/tomuments/templates/revealjs/css/theme/nu-library.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'file:///Users/hohenstein/tomuments/templates/revealjs/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section>
+<section id="slide-org2175790">
+<h2 id="org2175790">The Unix Shell - Introducing the Shell</h2>
+<p>
+with Tom Hohenstein 
+</p>
+
+</section>
+<section id="slide-org11cebd7">
+<h3 id="org11cebd7">Logistics</h3>
+<ul>
+<li>Bathrooms</li>
+<li>Internet</li>
+<li>Terminals ready?</li>
+<li>Other &#x2026; ?</li>
+
+</ul>
+
+</section>
+<section id="slide-org75f4f2f">
+<h3 id="org75f4f2f">Intentions</h3>
+<ul>
+<li>Pipes and filters</li>
+<li>Loops</li>
+<li>Scripts</li>
+
+</ul>
+
+
+</section>
+<section id="slide-orgcb267d1">
+<h3 id="orgcb267d1">Assumptions</h3>
+<ul>
+<li>The terminal up and ready to go (with files downloaded)</li>
+<li>Little, maybe no experience, with the shell</li>
+<li>Willing to ask questions</li>
+<li>unix-shell folder is on your Desktop</li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org7134fed">
+<h2 id="org7134fed">Pipes and Filters</h2>
+<p>
+(reset PS1) 
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-unix">PS1="$ " 
+</pre>
+</div>
+
+
+</section>
+<section id="slide-org8c5115b">
+<h3 id="org8c5115b">Let's move</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">cd ~/Desktop/unix-data/data-shell/molecules 
+</pre>
+</div>
+
+
+</section>
+<section id="slide-orge2ee8a4">
+<h3 id="orge2ee8a4">wc</h3>
+<p>
+(word count) 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">wc *.pdb 
+</pre>
+</div>
+
+</section>
+<section id="slide-org48de8a8">
+<h3 id="org48de8a8">Wildcards</h3>
+<ul>
+<li>* -&gt; zero or more characters</li>
+<li>? -&gt; exactly one character</li>
+
+</ul>
+
+</section>
+<section id="slide-org81878f9">
+<h3 id="org81878f9">more wc</h3>
+<ul>
+<li>-l -&gt; lines</li>
+<li>-c -&gt; characters (windows)</li>
+<li>-m -&gt; characters (mac)</li>
+<li>-w -&gt; words</li>
+
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">wc -l *.pdb 
+</pre>
+</div>
+
+</section>
+<section id="slide-orgdd0f0a2">
+<h3 id="orgdd0f0a2">&gt;</h3>
+<p>
+(redirect) 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">wc -l *.pdb &gt; lengths.txt 
+</pre>
+</div>
+
+<p>
+(don't redirect back to the same file, you'll have issues) 
+</p>
+
+</section>
+<section id="slide-org8c7eb7f">
+<h3 id="org8c7eb7f">&gt;&gt;</h3>
+<p>
+What does &gt;&gt; do? 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">echo hi &gt;&gt; test.txt 
+</pre>
+</div>
+
+</section>
+<section id="slide-orgc2a153f">
+<h3 id="orgc2a153f">cat</h3>
+<p>
+(concatenate and print) 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">cat lengths.txt 
+</pre>
+</div>
+
+<p>
+(there is also "less") 
+</p>
+
+</section>
+<section id="slide-orga055800">
+<h3 id="orga055800">sort</h3>
+<p>
+(sort) 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">sort -n lengths.txt 
+</pre>
+</div>
+
+<p>
+and 
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-unix">sort -n lengths.txt &gt; sorted-lengths.txt
+</pre>
+</div>
+
+</section>
+<section id="slide-org7f18f77">
+<h3 id="org7f18f77">head</h3>
+<p>
+(head of the file) 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">head -n 1 sorted-lengths.txt
+</pre>
+</div>
+
+</section>
+<section id="slide-org78fcced">
+<h3 id="org78fcced">|</h3>
+<p>
+(pipes) 
+</p>
+
+<p>
+You can connect commands with pipes 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">wc -l *.pdb | sort -n
+</pre>
+</div>
+
+<p>
+and &#x2026; 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">wc -l *.pdb | sort -n | head -n 1
+</pre>
+</div>
+
+</section>
+<section id="slide-org8a3264e">
+<h3 id="org8a3264e">Standard in and out</h3>
+<p>
+use diagram at 
+<a href="https://swcarpentry.github.io/shell-novice/04-pipefilter/">https://swcarpentry.github.io/shell-novice/04-pipefilter/</a>
+</p>
+
+</section>
+<section id="slide-orgc4aae54">
+<h3 id="orgc4aae54">Nelle's Pipeline</h3>
+<p>
+(let's check-in on Nelle) 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">cd ../north-pacific-gyre/2012-07-03
+</pre>
+</div>
+
+<p>
+and run
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">wc -l *.txt
+</pre>
+</div>
+
+</section>
+<section id="slide-org27adeb9">
+<h3 id="org27adeb9">Data check</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">wc -l *.txt | sort -n | head -n 5
+</pre>
+</div>
+
+<p>
+(something is up) 
+</p>
+
+</section>
+<section id="slide-orgf034512">
+<h3 id="orgf034512">Let's check the tail</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">wc -l *.txt | sort -n | tail -n 5
+</pre>
+</div>
+
+<p>
+(what's that Z?)
+</p>
+
+</section>
+<section id="slide-org05799fe">
+<h3 id="org05799fe">more digging</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">ls *Z.txt
+</pre>
+</div>
+
+</section>
+<section id="slide-orge93be62">
+<h3 id="orge93be62">a little regular expression</h3>
+<p>
+To target the AB files 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">ls *[AB].txt
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org329209b">
+<h2 id="org329209b">Loops</h2>
+<p>
+Looping our way to productivity 
+</p>
+
+</section>
+<section id="slide-org7fa7e51">
+<h3 id="org7fa7e51">let's get to the same place</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">cd ../../creatures/
+</pre>
+</div>
+
+<p>
+(~/Desktop/unix-data/data-shell/creatures) 
+</p>
+
+</section>
+<section id="slide-org184c193">
+<h3 id="org184c193">Let's make a backup</h3>
+<div class="org-src-container">
+
+<pre  class="src src-talking-point">cp *.dat original-*.dat
+</pre>
+</div>
+
+<p>
+Oh no! That didn't work because it expands to 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-talking-point">cp basilisk.dat unicorn.dat original-*.dat
+</pre>
+</div>
+
+</section>
+<section id="slide-orgb456dde">
+<h3 id="orgb456dde">But we can loop</h3>
+<p>
+(talk through the looping process) 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-talking-point">for [variable] in [list]
+&gt; do
+&gt;    stuff to $[variable]
+&gt; done
+
+</pre>
+</div>
+
+</section>
+<section id="slide-orgad1fbcc">
+<h3 id="orgad1fbcc">Example 1</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">for filename in basilisk.dat unicorn.dat
+&gt; do
+&gt;    head -n 3 $filename
+&gt; done
+</pre>
+</div>
+
+</section>
+<section id="slide-org73600a5">
+<h3 id="org73600a5">&gt; and &gt;</h3>
+<p>
+Same symbols but they have different meanings in different contexts. 
+</p>
+
+</section>
+<section id="slide-org43acae6">
+<h3 id="org43acae6">Example 2</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">for filename in *.dat 
+&gt; do
+&gt;    echo $filename 
+&gt;    head -n 3 $filename
+&gt; done
+</pre>
+</div>
+
+</section>
+<section id="slide-org56c9806">
+<h3 id="org56c9806">Hit the up key Tom</h3>
+<p>
+Show different syntax 
+</p>
+
+</section>
+<section id="slide-orgf1a9e80">
+<h3 id="orgf1a9e80">A note about white spaces in file names</h3>
+
+</section>
+<section id="slide-orga8025f9">
+<h3 id="orga8025f9">Solving our copying problem</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">for filename in *.dat 
+&gt; do
+&gt;    cp $filename original-$filename 
+&gt; done
+</pre>
+</div>
+
+</section>
+<section id="slide-org81229b1">
+<h3 id="org81229b1">history</h3>
+<p>
+(see your last commands) 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">history | tail -n 5 
+</pre>
+</div>
+
+<p>
+! command number to rerun 
+</p>
+
+</section>
+<section id="slide-org75f6079">
+<h3 id="org75f6079">Other fun stuff</h3>
+<ul>
+<li>ctrl-a and ctrl-e - move to front and end of terminal line</li>
+<li>ctrl-r - reverse search commands</li>
+<li>!! - last command (same as up arrow)</li>
+<li>!$ - last word of last command</li>
+
+</ul>
+
+</section>
+<section id="slide-org6de557a">
+<h3 id="org6de557a">Nelle's Pipeline</h3>
+<p>
+move to north-pacific-gyre/2012-07-03
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">cd ../north-pacific-gyre/2012-07-03/ 
+</pre>
+</div>
+
+</section>
+<section id="slide-org02f6c51">
+<h3 id="org02f6c51">Step 1</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">for datafile in NENE*[AB].txt
+&gt; do
+&gt;     echo $datafile
+&gt; done
+</pre>
+</div>
+
+</section>
+<section id="slide-orgb5c29ae">
+<h3 id="orgb5c29ae">Step 2</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">for datafile in NENE*[AB].txt
+&gt; do
+&gt;     echo $datafile stats-$datafile
+&gt; done
+</pre>
+</div>
+
+</section>
+<section id="slide-orgaaa0fd1">
+<h3 id="orgaaa0fd1">Step 3</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">for datafile in NENE*[AB].txt
+&gt; do
+&gt;     echo $datafile 
+&gt;     bash goostats $datafile stats-$datafile
+&gt; done
+</pre>
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgaeb42fb">
+<h2 id="orgaeb42fb">Scripts</h2>
+<p>
+Making the computer work for us. 
+</p>
+
+</section>
+<section id="slide-orgd960564">
+<h3 id="orgd960564">Move to the molecules folder</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">cd ../../molecules/ 
+</pre>
+</div>
+
+
+</section>
+<section id="slide-orgd4e726c">
+<h3 id="orgd4e726c">create middle.sh</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">nano middle.sh
+</pre>
+</div>
+
+<p>
+and add: 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">head -n 15 octane.pdb | tail -n 5
+</pre>
+</div>
+
+</section>
+<section id="slide-orgda03251">
+<h3 id="orgda03251">run a script!!!</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">bash middle.sh 
+</pre>
+</div>
+
+</section>
+<section id="slide-org8336abc">
+<h3 id="org8336abc">let's add a variable</h3>
+<p>
+Open middle.sh with nano 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">head -n 15 "$1" | tail -n 5
+</pre>
+</div>
+
+<p>
+run it 
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-unix">bash middle.sh octane.pdb 
+</pre>
+</div>
+
+</section>
+<section id="slide-org24d7e69">
+<h3 id="org24d7e69">more variables!</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">head -n "$2" "$1" | tail -n "$3" 
+</pre>
+</div>
+
+<p>
+to run it 
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-unix">bash middle.sh octane.pdb 15 5
+</pre>
+</div>
+
+</section>
+<section id="slide-orgb592bb9">
+<h3 id="orgb592bb9">comments for documentation</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix"># Select lines from the middle of a file.
+# Usage:  middle.sh filename end_line num_lines 
+</pre>
+</div>
+
+</section>
+<section id="slide-org73bcfa4">
+<h3 id="org73bcfa4">more than one file</h3>
+<p>
+(a special variable "$@") 
+</p>
+
+<p>
+create a new file called sorted.sh
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix"># Sort filenames by their length.
+# Usage: sorted.sh one_or_more_filenames
+
+wc -l "$@" | sort -n
+</pre>
+</div>
+
+</section>
+<section id="slide-org1fc16b0">
+<h3 id="org1fc16b0">give it a try</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">bash sorted.sh *.pdb ../creatures/*.dat
+</pre>
+</div>
+
+</section>
+<section id="slide-orgf4716c7">
+<h3 id="orgf4716c7">let's fail again</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">bash sorted.sh
+</pre>
+</div>
+
+</section>
+<section id="slide-orge532c01">
+<h3 id="orge532c01">saving experiments</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">history | tail -n 5 &gt; redo-figure-3.sh
+</pre>
+</div>
+
+</section>
+<section id="slide-org65751db">
+<h3 id="org65751db">Back to Nelle</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">cd ../north-pacific-gyre/2012-07-03/ 
+</pre>
+</div>
+
+<p>
+Let's create a script do-stats.sh
+</p>
+
+</section>
+<section id="slide-orge5a935d">
+<h3 id="orge5a935d">Our script</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix"># Calculate stats for data files.
+for datafile in "$@"
+do
+    echo $datafile
+    bash goostats $datafile stats-$datafile
+done
+</pre>
+</div>
+
+</section>
+<section id="slide-org23bdcef">
+<h3 id="org23bdcef">run it!</h3>
+<p>
+(remember ls NENE*[AB].txt) 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">bash do-stats.sh NENE*[AB].txt 
+</pre>
+</div>
+
+</section>
+<section id="slide-orgc537a9b">
+<h3 id="orgc537a9b">more fun</h3>
+<p>
+(output only the number of files processed) 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">bash do-stats.sh NENE*[AB].txt | wc -l 
+</pre>
+</div>
+
+</section>
+<section id="slide-orgf839ed4">
+<h3 id="orgf839ed4">Exercise</h3>
+<p>
+(think pair share) 
+</p>
+
+<p>
+Script reading comprehension at:
+<a href="https://swcarpentry.github.io/shell-novice/06-script/">https://swcarpentry.github.io/shell-novice/06-script/</a>
+</p>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgb9d4917">
+<h2 id="orgb9d4917">Finding Things</h2>
+<p>
+(the fun stuff)
+</p>
+
+</section>
+<section id="slide-org8811b06">
+<h3 id="org8811b06">move to data-shell/writing</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">cd ~/Desktop/unix-data/data-shell/writing 
+</pre>
+</div>
+
+</section>
+<section id="slide-orgfa4d040">
+<h3 id="orgfa4d040">grep</h3>
+<p>
+(global regular expression print) 
+</p>
+
+<p>
+let's look at a file 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">cat haiku.txt 
+</pre>
+</div>
+
+</section>
+<section id="slide-orge2385d1">
+<h3 id="orge2385d1">example 1 and 2</h3>
+<p>
+#1
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-unix">grep not haiku.txt 
+</pre>
+</div>
+
+<p>
+#2 
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-unix">grep The haiku.txt 
+</pre>
+</div>
+
+</section>
+<section id="slide-orgbf5f314">
+<h3 id="orgbf5f314">grep -w</h3>
+<p>
+(grep word)
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">grep -w The haiku.txt 
+</pre>
+</div>
+
+</section>
+<section id="slide-org3ecc44a">
+<h3 id="org3ecc44a">grep -n</h3>
+<p>
+(grep line numbers) 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">grep -n "is" haiku.txt 
+</pre>
+</div>
+
+</section>
+<section id="slide-orga0db162">
+<h3 id="orga0db162">grep -i</h3>
+<p>
+(grep case-insensitive) 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">grep -i -w -n "is" haiku.txt 
+</pre>
+</div>
+
+</section>
+<section id="slide-orgdae8187">
+<h3 id="orgdae8187">grep -v</h3>
+<p>
+(grep invert aka lines that do not contain) 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">grep -v -w -n "is" haiku.txt 
+</pre>
+</div>
+
+</section>
+<section id="slide-org0afacfa">
+<h3 id="org0afacfa">-E regular expression power</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">grep -E '^.o' haiku.txt
+</pre>
+</div>
+<p>
+(second character of the line is an 'o')
+</p>
+
+<p>
+^ -&gt; start of the line 
+</p>
+
+<p>
+. -&gt; one character 
+</p>
+
+<p>
+' quotes -&gt; prevent the shell from expanding 
+</p>
+
+</section>
+<section id="slide-org5d69572">
+<h3 id="org5d69572">find</h3>
+<p>
+(find files) 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">find . 
+</pre>
+</div>
+
+</section>
+<section id="slide-org7b90f69">
+<h3 id="org7b90f69">find -type</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">find . -type d 
+</pre>
+</div>
+<p>
+(find things that are a directory) 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">find . -type f
+</pre>
+</div>
+<p>
+(find things that are a file) 
+</p>
+
+</section>
+<section id="slide-orga77ba83">
+<h3 id="orga77ba83">find -name</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">find . -name *.txt
+</pre>
+</div>
+<p>
+(find things named *.txt) 
+</p>
+
+<p>
+Expanded too early 
+</p>
+
+</section>
+<section id="slide-org3f78271">
+<h3 id="org3f78271">find -name (proper)</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">find . -name '*.txt'
+</pre>
+</div>
+
+</section>
+<section id="slide-org912589b">
+<h3 id="org912589b">$()</h3>
+<p>
+(the shell executes inside the $() first) 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">wc -l $(find . -name '*.txt')
+</pre>
+</div>
+
+</section>
+<section id="slide-org445648a">
+<h3 id="org445648a">find + grep</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">grep "FE" $(find .. -name '*.pdb')
+</pre>
+</div>
+
+</section>
+<section id="slide-org41af25f">
+<h3 id="org41af25f">Thank you!</h3>
+<p>
+Using grep and find on 
+<a href="https://swcarpentry.github.io/shell-novice/07-find/">https://swcarpentry.github.io/shell-novice/07-find/</a>
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="file:///Users/hohenstein/tomuments/templates/revealjs/lib/js/head.min.js"></script>
+<script src="file:///Users/hohenstein/tomuments/templates/revealjs/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'file:///Users/hohenstein/tomuments/templates/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'file:///Users/hohenstein/tomuments/templates/revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'file:///Users/hohenstein/tomuments/templates/revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'file:///Users/hohenstein/tomuments/templates/revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'file:///Users/hohenstein/tomuments/templates/revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

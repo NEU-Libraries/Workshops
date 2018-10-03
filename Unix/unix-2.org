@@ -29,6 +29,12 @@
 
 * Pipes and Filters 
 
+(reset PS1) 
+#+BEGIN_SRC unix 
+PS1="$ " 
+#+END_SRC
+
+
 ** Let's move 
 
 #+BEGIN_SRC unix 
@@ -254,7 +260,7 @@ history | tail -n 5
   + ctrl-a and ctrl-e - move to front and end of terminal line 
   + ctrl-r - reverse search commands  
   + !! - last command (same as up arrow) 
-  + !$ - last work of last command 
+  + !$ - last word of last command 
 
 ** Nelle's Pipeline 
    move to north-pacific-gyre/2012-07-03
@@ -424,6 +430,10 @@ https://swcarpentry.github.io/shell-novice/06-script/
 
 ** move to data-shell/writing 
 
+#+BEGIN_SRC unix
+cd ~/Desktop/unix-data/data-shell/writing 
+#+END_SRC
+
 ** grep 
 (global regular expression print) 
 
@@ -456,21 +466,21 @@ grep -w The haiku.txt
 (grep line numbers) 
 
 #+BEGIN_SRC unix
-grep -n "it" haiku.txt 
+grep -n "is" haiku.txt 
 #+END_SRC
 
 ** grep -i 
 (grep case-insensitive) 
 
 #+BEGIN_SRC unix
-grep -i -w -n "it" haiku.txt 
+grep -i -w -n "is" haiku.txt 
 #+END_SRC
 
 ** grep -v 
 (grep invert aka lines that do not contain) 
 
 #+BEGIN_SRC unix
-grep -v -w -n "it" haiku.txt 
+grep -v -w -n "is" haiku.txt 
 #+END_SRC
 
 ** -E regular expression power 
@@ -533,7 +543,7 @@ wc -l $(find . -name '*.txt')
 grep "FE" $(find .. -name '*.pdb')
 #+END_SRC
 
-** Final reviews 
+** Thank you! 
 
 Using grep and find on 
 https://swcarpentry.github.io/shell-novice/07-find/

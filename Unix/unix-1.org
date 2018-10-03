@@ -1,0 +1,343 @@
+#+REVEAL_THEME: nu-library 
+#+OPTIONS: toc:nil num:nil author:nil date:nil reveal_title_slide:nil 
+
+* The Unix Shell - Introducing the Shell 
+  
+  with Tom Hohenstein 
+
+** Logistics 
+
+   + Bathrooms
+   + Internet 
+   + Terminals ready? 
+   + Other ... ? 
+
+** Intentions 
+   
+   + Introduce the shell 
+   + Learn to navigate 
+   + Work with files and directories 
+
+** Assumptions 
+
+   + The terminal up and ready to go (with files downloaded)
+   + Little, maybe no experience, with the shell 
+   + Willing to ask questions 
+   + data-shell folder is on your Desktop 
+
+** Quick Note 
+
+   If you already know how to use grep and find, this session might
+   only be a refresher. If you're willing, please help new learners. 
+
+
+* What is the shell? 
+
+  A "shell" around the operating system that hides some its complexity
+  and makes it easier for us to interact with. 
+
+  We'll be using the Bourne Again SHell (BASH) written by Stephen
+  Bourne. The default shell on most unix systems. 
+
+** Command-line interface (CLI)
+
+   Read-Evaluate-Print Loop (REPL) 
+   
+   The user provides the computer a command. The computer reads it,
+   executes it, and prints its output. 
+
+** Why bother
+
+   Automation! 
+
+   While commands can feel terse and complex at first, our ability to
+   chain them together to perform common, routine (yet complex) tasks
+   is surprising powerful. (and it creates reproducible workflows) 
+
+** Case study Nelle 
+
+   Nelle, a marine biologist, has a bunch of data to analyze using two
+   programs - goostats and goodiff. If she does this by hand, she'll
+   have click and open files about 46,370 times. 
+
+   There must be a better way... 
+   
+* Navigating Files and Directories 
+
+** Preparation Magic 
+
+This will help ensure our terminals look the same 
+
+#+BEGIN_SRC unix 
+PS1='$ ' 
+#+END_SRC 
+
+Let's move to same location 
+#+BEGIN_SRC unix 
+cd ~/Desktop/unix-data
+#+END_SRC 
+
+** Our first command
+
+#+BEGIN_SRC unix 
+whoami 
+#+END_SRC 
+
+** Our first failure 
+
+#+BEGIN_SRC unix 
+tom
+#+END_SRC 
+
+** Quick Note 
+
+Unix is great at giving negative feedback. Don't take it personally :
+) 
+
+** Where are we 
+
+(print working directory) 
+
+#+BEGIN_SRC unix 
+pwd 
+#+END_SRC 
+
+** What is happening? 
+
+(quick answer) 
+
+** List 
+
+(list directory contents) 
+
+#+BEGIN_SRC unix 
+ls 
+#+END_SRC 
+
+** Getting Help 
+
+Mac and Unix - use "man" plus program (man is short for manual) 
+
+#+BEGIN_SRC unix 
+   man ls 
+#+END_SRC 
+
+Windows: Visit http://man.he.net/y
+
+** Hit q to exit 
+** Commands, Options, and Arguments 
+
+Tricky things to grasp but think of the general Unix command structure
+as: 
+
+#+BEGIN_SRC talking-point
+  command -option -option /directory-argument 
+#+END_SRC 
+
+** LS Example Option 1
+
+(list in the long format)
+
+#+BEGIN_SRC unix 
+  ls -l 
+#+END_SRC 
+
+** LS Example Option 2 
+
+(list with directory slashes) 
+
+#+BEGIN_SRC unix 
+  ls -F 
+#+END_SRC 
+
+** LS Example Option 3
+
+(list all and directory slashes) 
+
+#+BEGIN_SRC unix 
+  ls  -a -F
+#+END_SRC 
+ 
+OR 
+
+#+BEGIN_SRC unix 
+  ls -aF 
+#+END_SRC 
+
+** Let's fail again 
+
+#+BEGIN_SRC unix 
+  ls -j
+#+END_SRC 
+
+** Activity 
+(think, pair, share) 
+
+What will the following do? 
+
+#1
+#+BEGIN_SRC unix 
+  ls -l -h 
+#+END_SRC 
+
+#2 
+#+BEGIN_SRC unix 
+  ls -R -t
+#+END_SRC 
+
+** LS Example 4 
+
+You can use ls to see the listing of any directory
+
+#+BEGIN_SRC unix 
+  ls data-shell
+#+END_SRC 
+
+and 
+
+#+BEGIN_SRC unix 
+  ls data-shell/creatures/ 
+#+END_SRC 
+
+** Reset 
+
+What directory are we all in? 
+
+#+BEGIN_SRC unix 
+   pwd 
+#+END_SRC 
+
+Let's move to the same location 
+
+#+BEGIN_SRC unix 
+cd ~/Desktop/unix-data/data-shell
+#+END_SRC 
+
+** cd 
+(change directory) 
+
+#+BEGIN_SRC talking-point
+   cd [add your directory path here]
+#+END_SRC 
+
+** Interesting point(s)  
+
+What do the following do? 
+#+BEGIN_SRC unix 
+   cd . 
+#+END_SRC
+
+and
+#+BEGIN_SRC unix 
+   cd .. 
+#+END_SRC
+
+** Wait there's more! 
+
+Try 
+#+BEGIN_SRC unix 
+   cd
+#+END_SRC
+
+** ~, -, tab complete 
+
+"~" -> current users home directory 
+
+"-" -> last directory (like last channel) 
+
+hit tab to auto complete
+
+#+BEGIN_SRC unix 
+cd ~/Desktop/unix-data/data-shell
+#+END_SRC
+
+** Relative and Absolute Paths 
+
+
+
+** mkdir 
+(make directory) 
+
+#+BEGIN_SRC unix 
+mkdir thesis
+#+END_SRC
+
+** A note on naming things 
+
++ Don't use whitespaces 
++ Don't begin with "-"
++ Stick with letters, numbers, . (period), - (dash) and _ (underscore)
++ (Tom's) Avoid multiple "." (only use before file extension) 
+
+** Start writing 
+
+#+BEGIN_SRC unix 
+nano thesis/draft.txt 
+#+END_SRC
+
+** Nano 
+
+   + ^x -> Control-X or Ctrl-X (exit) 
+   + ^o -> Control-O or Ctrl-O (write-out) 
+
+Let's move into thesis 
+
+#+BEGIN_SRC unix 
+cd thesis 
+#+END_SRC
+
+
+** mv 
+(move) (or rename) 
+
+#+BEGIN_SRC unix 
+mv draft.txt quotes.txt
+#+END_SRC
+
+Be careful about naming! mv will overwrite a file if it exists. Use -i
+for interactive to help avoid this. 
+
+** cp
+(copy) 
+
+#+BEGIN_SRC unix 
+cp quotes.txt draft.txt 
+#+END_SRC
+
+
+** rm 
+(remove) 
+
+STOP! This is the real deal. No trash bins or what-have-you. Once it
+is gone, it is gone. 
+
+** rm 
+(remove) 
+
+#+BEGIN_SRC unix 
+rm  draft.txt 
+#+END_SRC
+
+** rm recursively 
+
+Hey - you probably don't want to do this. Just saying... 
+
+#+BEGIN_SRC unix 
+rm -r "not going to do this" 
+#+END_SRC
+
+or add -i for interactive 
+#+BEGIN_SRC unix 
+rm -r -i "not going to do this" 
+#+END_SRC
+
+** Check on Learning  
+
+What command do we use to list files and directories? 
+
+How do we rename a file? 
+
+How do we create a new folder? 
+
+
+

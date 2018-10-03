@@ -1,0 +1,819 @@
+#+REVEAL_THEME: nu-library 
+#+OPTIONS: toc:nil num:nil author:nil date:nil reveal_title_slide:nil 
+
+* The Unix Shell - Introducing the Shell 
+  
+  with Tom Hohenstein 
+
+** Logistics 
+
+   + Bathrooms
+   + Internet 
+   + Terminals ready? 
+   + Other ... ? 
+
+** Intentions 
+   
+   + Introduce the shell 
+   + Learn to navigate and work with files and directories 
+   + Pipes and filters 
+   + Loops 
+   + Scripts (hopefully) 
+   + finding things (hopefully) 
+
+** Assumptions 
+
+   + The terminal up and ready to go (with files downloaded)
+   + Little, maybe no experience, with the shell 
+   + Willing to ask questions 
+   + data-shell folder is on your Desktop 
+
+** Quick Note 
+
+   If you already know how to use grep and find, this session might
+   only be a refresher. If you're willing, please help new learners. 
+
+
+* What is the shell? 
+
+  A "shell" around the operating system that hides some its complexity
+  and makes it easier for us to interact with. 
+
+  We'll be using the Bourne Again SHell (BASH) written by Stephen
+  Bourne. The default shell on most unix systems. 
+
+** Command-line interface (CLI)
+
+   Read-Evaluate-Print Loop (REPL) 
+   
+   The user provides the computer a command. The computer reads it,
+   executes it, and prints its output. 
+
+** Why bother
+
+   Automation! 
+
+   While commands can feel terse and complex at first, our ability to
+   chain them together to perform common, routine (yet complex) tasks
+   is surprising powerful. (and it creates reproducible workflows) 
+
+** Case study Nelle 
+
+   Nelle, a marine biologist, has a bunch of data to analyze using two
+   programs - goostats and goodiff. If she does this by hand, she'll
+   have click and open files about 46,370 times. 
+
+   There must be a better way... 
+   
+* Navigating Files and Directories 
+
+** Preparation Magic 
+
+This will help ensure our terminals look the same 
+
+#+BEGIN_SRC unix 
+PS1='$ ' 
+#+END_SRC 
+
+** Our first command
+
+#+BEGIN_SRC unix 
+whoami 
+#+END_SRC 
+
+** Our first failure 
+
+#+BEGIN_SRC unix 
+tom
+#+END_SRC 
+
+** Quick Note 
+
+Unix is great at giving negative feedback. Don't take it personally :
+) 
+
+** Where are we 
+
+(print working directory) 
+
+#+BEGIN_SRC unix 
+pwd 
+#+END_SRC 
+
+** What is happening? 
+
+(quick answer) 
+
+** List 
+
+(list directory contents) 
+
+#+BEGIN_SRC unix 
+ls 
+#+END_SRC 
+
+** Getting Help 
+
+Mac and Unix - use "man" plus program (man is short for manual) 
+
+#+BEGIN_SRC unix 
+   man ls 
+#+END_SRC 
+
+Windows: Visit http://man.he.net/y
+
+** Hit q to exit 
+** Commands, Options, and Arguments 
+
+Tricky things to grasp but think of the general Unix command structure
+as: 
+
+#+BEGIN_SRC talking-point
+  command -option -option /directory-argument 
+#+END_SRC 
+
+** LS Example Option 1
+
+(list in the long format)
+
+#+BEGIN_SRC unix 
+  ls -l 
+#+END_SRC 
+
+** LS Example Option 2 
+
+(list with directory slashes) 
+
+#+BEGIN_SRC unix 
+  ls -F 
+#+END_SRC 
+
+** LS Example Option 3
+
+(list all and directory slashes) 
+
+#+BEGIN_SRC unix 
+  ls  -a -F
+#+END_SRC 
+ 
+OR 
+
+#+BEGIN_SRC unix 
+  ls -aF 
+#+END_SRC 
+
+** Let's fail again 
+
+#+BEGIN_SRC unix 
+  ls -j
+#+END_SRC 
+
+** Activity 
+(think, pair, share) 
+
+What will the following do? 
+
+#1
+#+BEGIN_SRC unix 
+  ls -l -h 
+#+END_SRC 
+
+#2 
+#+BEGIN_SRC unix 
+  ls -R -t
+#+END_SRC 
+
+** LS Example 4 
+
+You can use ls to see the listing of any directory
+
+#+BEGIN_SRC unix 
+  ls data 
+#+END_SRC 
+
+and 
+
+#+BEGIN_SRC unix 
+  ls data/elements 
+#+END_SRC 
+
+** Reset 
+
+What directory are we all in? 
+
+#+BEGIN_SRC unix 
+   pwd 
+#+END_SRC 
+
+Let's move to the same location 
+
+#+BEGIN_SRC unix 
+cd ~/Desktop/data-shell 
+#+END_SRC 
+
+** cd 
+(change directory) 
+
+#+BEGIN_SRC talking-point
+   cd [add your directory path here]
+#+END_SRC 
+
+** Interesting point(s)  
+
+What do the following do? 
+#+BEGIN_SRC unix 
+   cd . 
+#+END_SRC
+
+and
+#+BEGIN_SRC unix 
+   cd .. 
+#+END_SRC
+
+** Wait there's more! 
+
+Try 
+#+BEGIN_SRC unix 
+   cd
+#+END_SRC
+
+** ~, -, tab complete 
+
+"~" -> current users home directory 
+
+"-" -> last directory (like last channel) 
+
+hit tab to auto complete
+
+#+BEGIN_SRC unix 
+cd ~/Desktop/data-shell 
+#+END_SRC
+
+** Relative and Absolute Paths 
+
+Go to absolute and relative path diagram at:
+https://swcarpentry.github.io/shell-novice/02-filedir/
+
+** mkdir 
+(make directory) 
+
+#+BEGIN_SRC unix 
+mkdir thesis
+#+END_SRC
+
+** A note on naming things 
+
++ Don't use whitespaces 
++ Don't begin with "-"
++ Stick with letters, numbers, . (period), - (dash) and _ (underscore)
++ (Tom's) Avoid multiple "." (only use before file extension) 
+
+** Start writing 
+
+Move into "thesis" 
+
+#+BEGIN_SRC unix 
+nano draft.txt 
+#+END_SRC
+
+** Nano 
+
+   + ^x -> Control-X or Ctrl-X (exit) 
+   + ^o -> Control-O or Ctrl-O (write-out) 
+
+** rm 
+(remove) 
+
+STOP! This is the real deal. No trash bins or what-have-you. Once it
+is gone, it is gone. 
+
+** rm 
+(remove) 
+
+#+BEGIN_SRC unix 
+rm  draft.txt 
+#+END_SRC
+
+** rm recursively 
+
+Hey - you probably don't want to do this. Just saying... 
+
+#+BEGIN_SRC unix 
+rm -r draft.txt 
+#+END_SRC
+
+or add -i for interactive 
+#+BEGIN_SRC unix 
+rm -r -i draft.txt 
+#+END_SRC
+
+** mv 
+(move) (or rename) 
+
+#+BEGIN_SRC unix 
+mv draft.txt quotes.txt
+#+END_SRC
+
+Be careful about naming! mv will overwrite a file if it exists. Use -i
+for interactive to help avoid this. 
+
+** cp
+(copy) 
+
+#+BEGIN_SRC unix 
+cp quotes.txt draft.txt 
+#+END_SRC
+
+** Exercise 
+(think pair share) 
+
+Renaming Files on 
+https://swcarpentry.github.io/shell-novice/03-create/
+
+and moving and copying at
+https://swcarpentry.github.io/shell-novice/03-create/
+
+* Pipes and Filters 
+** Let's move 
+to the molecules directory
+** wc 
+(word count) 
+
+#+BEGIN_SRC unix 
+wc *.pdb 
+#+END_SRC
+
+** Wildcards 
+
++ * -> zero or more characters 
++ ? -> exactly one character 
+
+** more wc 
+
++ -l -> lines 
++ -c -> characters (windows) 
++ -m -> characters (mac) 
++ -w -> words 
+
+#+BEGIN_SRC unix 
+wc -l *.pdb 
+#+END_SRC
+
+** > 
+(redirect) 
+
+#+BEGIN_SRC unix 
+wc -l *.pdb > lengths.txt 
+#+END_SRC
+
+(don't redirect back to the same file, you'll have issues) 
+
+** >>
+
+What does >> do? 
+
+#+BEGIN_SRC unix 
+echo hi >> test.txt 
+#+END_SRC
+
+** cat 
+(concatenate and print) 
+
+#+BEGIN_SRC unix 
+cat lengths.txt 
+#+END_SRC
+
+(there is also "less") 
+
+** sort 
+(sort) 
+
+#+BEGIN_SRC unix 
+sort -n lengths.txt 
+#+END_SRC
+
+and 
+#+BEGIN_SRC unix 
+sort -n lengths.txt > sorted-lengths.txt
+#+END_SRC
+
+** head 
+(head of the file) 
+
+#+BEGIN_SRC unix 
+head -n 1 sorted-lengths.txt
+#+END_SRC
+
+** | 
+(pipes) 
+
+You can connect commands with pipes 
+
+#+BEGIN_SRC unix 
+ wc -l *.pdb | sort -n
+#+END_SRC
+ 
+and ... 
+
+#+BEGIN_SRC unix 
+wc -l *.pdb | sort -n | head -n 1
+#+END_SRC
+
+** Standard in and out 
+
+use diagram at 
+https://swcarpentry.github.io/shell-novice/04-pipefilter/
+
+** Nelle's Pipeline 
+(let's check-in on Nelle) 
+
+#+BEGIN_SRC unix 
+cd north-pacific-gyre/2012-07-03
+wc -l *.txt
+#+END_SRC
+
+** Data check 
+
+#+BEGIN_SRC unix 
+wc -l *.txt | sort -n | head -n 5
+#+END_SRC
+
+(something is up) 
+
+** Let's check the tail 
+
+#+BEGIN_SRC unix 
+wc -l *.txt | sort -n | tail -n 5
+#+END_SRC
+
+(what's that Z?)
+
+** more digging 
+
+#+BEGIN_SRC unix 
+ls *Z.txt
+#+END_SRC
+
+** a little regular expression 
+ 
+To target the AB files 
+
+#+BEGIN_SRC unix 
+ls *[AB].txt
+#+END_SRC
+
+
+* Loops 
+
+Looping our way to productivity 
+
+** let's get to the same place 
+
+#+BEGIN_SRC unix 
+cd ~/Desktop/data-shell/creatures/
+#+END_SRC
+
+** Let's make a backup 
+
+#+BEGIN_SRC talking-point
+cp *.dat original-*.dat
+#+END_SRC
+
+Oh no! That didn't work because it expands to 
+
+#+BEGIN_SRC talking-point
+cp basilisk.dat unicorn.dat original-*.dat
+#+END_SRC
+
+** But we can loop 
+(talk through the looping process) 
+
+#+BEGIN_SRC talking-point
+for [variable] in [list]
+> do
+>    head -n 3 $[variable]
+> done
+
+#+END_SRC
+
+** Example 1
+
+#+BEGIN_SRC unix 
+for filename in basilisk.dat unicorn.dat
+> do
+>    head -n 3 $filename
+> done
+#+END_SRC
+
+** > and > 
+
+Same symbols but they have different meanings in different contexts. 
+
+** Example 2
+
+#+BEGIN_SRC unix 
+for filename in *.dat 
+> do
+>    echo $filename 
+>    head -n 3 $filename
+> done
+#+END_SRC
+
+** Hit the up key Tom 
+
+Show different syntax 
+
+** A note about white spaces in file names 
+
+** Solving our copying problem 
+
+#+BEGIN_SRC unix 
+for filename in *.dat 
+> do
+>    cp $filename original-$filename 
+> done
+#+END_SRC
+
+** history 
+(see your last commands) 
+
+#+BEGIN_SRC unix
+history | tail -n 5 
+#+END_SRC
+
+! command number to rerun 
+
+** Other fun stuff 
+
+  + ctrl-a and ctrl-e - move to front and end of terminal line 
+  + ctrl-r - reverse search commands  
+  + !! - last command (same as up arrow) 
+  + !$ - last work of last command 
+
+** Nelle's Pipeline 
+   move to north-pacific-gyre/2012-07-03
+
+** Step 1 
+
+#+BEGIN_SRC unix
+for datafile in NENE*[AB].txt
+> do
+>     echo $datafile
+> done
+#+END_SRC
+
+** Step 2 
+#+BEGIN_SRC unix
+for datafile in NENE*[AB].txt
+> do
+>     echo $datafile stats-$datafile
+> done
+#+END_SRC
+
+** Step 3
+#+BEGIN_SRC unix
+for datafile in NENE*[AB].txt
+> do
+>     echo $datafile 
+>     bash goostats $datafile stats-$datafile
+> done
+#+END_SRC
+
+** Check on learning 
+
+Doing a dry run at: 
+https://swcarpentry.github.io/shell-novice/05-loop/
+
+
+* Scripts 
+Making the computer work for us. 
+
+** Move to the molecules folder 
+
+** create middle.sh 
+
+#+BEGIN_SRC unix
+head -n 15 octane.pdb | tail -n 5
+#+END_SRC
+
+to run it 
+#+BEGIN_SRC unix
+bash middle.sh 
+#+END_SRC
+
+** let's add a variable 
+
+#+BEGIN_SRC unix
+head -n 15 "$1" | tail -n 5
+#+END_SRC
+
+to run it 
+#+BEGIN_SRC unix
+bash middle.sh octane.pdb 
+#+END_SRC
+
+** more variables 
+
+#+BEGIN_SRC unix
+head -n "$2" "$1" | tail -n "$3" 
+#+END_SRC
+
+to run it 
+#+BEGIN_SRC unix
+bash middle.sh octane.pdb 15 5
+#+END_SRC
+ 
+** comments for documentation 
+
+#+BEGIN_SRC unix
+# Select lines from the middle of a file.
+# Usage: bash middle.sh filename end_line num_lines 
+#+END_SRC
+
+** more than one file
+(a special variable "$@") 
+
+create a new file called sorted.sh
+
+#+BEGIN_SRC unix
+# Sort filenames by their length.
+# Usage: bash sorted.sh one_or_more_filenames
+wc -l "$@" | sort -n
+#+END_SRC
+
+** give it a try  
+
+#+BEGIN_SRC unix
+bash sorted.sh *.pdb ../creatures/*.dat
+#+END_SRC
+
+** let's fail again  
+
+#+BEGIN_SRC unix
+bash sorted.sh
+#+END_SRC
+
+** saving experiments 
+
+#+BEGIN_SRC unix
+history | tail -n 5 > redo-figure-3.sh
+#+END_SRC
+
+** Back to Nelle 
+(and the north-pacific-gyre/2017-07-03/) 
+
+Let's create a script do-stats.sh
+
+** Our script 
+
+#+BEGIN_SRC unix
+# Calculate stats for data files.
+for datafile in "$@"
+do
+    echo $datafile
+    bash goostats $datafile stats-$datafile
+done
+#+END_SRC
+
+** run it! 
+(remember ls NENE*[AB].txt) 
+
+#+BEGIN_SRC unix
+bash do-stats.sh NENE*[AB].txt 
+#+END_SRC
+
+** more fun
+(output only the number of file processed) 
+
+#+BEGIN_SRC unix
+bash do-stats.sh NENE*[AB].txt | wc -l 
+#+END_SRC
+
+** Exercise 
+(think pair share) 
+
+Script reading comprehension at:
+https://swcarpentry.github.io/shell-novice/06-script/
+
+
+* Finding Things 
+(the fun stuff)
+
+** move to data-shell/writing 
+
+** grep 
+(global regular expression print) 
+
+let's look at a file 
+
+#+BEGIN_SRC unix
+cat haiku.txt 
+#+END_SRC
+
+** example 1 and 2 
+
+#1
+#+BEGIN_SRC unix
+grep not haiku.txt 
+#+END_SRC
+
+#2 
+#+BEGIN_SRC unix
+grep The haiku.txt 
+#+END_SRC
+
+** grep -w 
+(grep word)
+
+#+BEGIN_SRC unix
+grep -w The haiku.txt 
+#+END_SRC
+
+** grep -n 
+(grep line numbers) 
+
+#+BEGIN_SRC unix
+grep -n "it" haiku.txt 
+#+END_SRC
+
+** grep -i 
+(grep case-insensitive) 
+
+#+BEGIN_SRC unix
+grep -i -w -n "it" haiku.txt 
+#+END_SRC
+
+** grep -v 
+(grep invert aka lines that do not contain) 
+
+#+BEGIN_SRC unix
+grep -v -w -n "it" haiku.txt 
+#+END_SRC
+
+** -E regular expression power 
+
+#+BEGIN_SRC unix
+grep -E '^.o' haiku.txt
+#+END_SRC
+(second character of the line is an 'o')
+
+^ -> start of the line 
+
+. -> one character 
+
+' quotes -> prevent the shell from expanding 
+
+** find 
+(find files) 
+
+#+BEGIN_SRC unix
+find . 
+#+END_SRC
+
+** find -type 
+
+#+BEGIN_SRC unix
+find . -type d 
+#+END_SRC
+(find things that are a directory) 
+
+#+BEGIN_SRC unix
+find . -type f
+#+END_SRC
+(find things that are a file) 
+
+** find -name  
+
+#+BEGIN_SRC unix
+find . -name *.txt
+#+END_SRC
+(find things named *.txt) 
+
+Expanded too early 
+
+** find -name (proper) 
+
+#+BEGIN_SRC unix
+find . -name '*.txt'
+#+END_SRC
+
+** $() 
+(the shell executes inside the $() first) 
+
+#+BEGIN_SRC unix
+wc -l $(find . -name '*.txt')
+#+END_SRC
+
+** find + grep 
+
+#+BEGIN_SRC unix
+grep "FE" $(find .. -name '*.pdb')
+#+END_SRC
+
+** Final reviews 
+
+Using grep and find on 
+https://swcarpentry.github.io/shell-novice/07-find/
+
+
+

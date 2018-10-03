@@ -1,0 +1,542 @@
+#+REVEAL_THEME: nu-library 
+#+OPTIONS: toc:nil num:nil author:nil date:nil reveal_title_slide:nil 
+
+* The Unix Shell - Introducing the Shell 
+  
+  with Tom Hohenstein 
+
+** Logistics 
+
+   + Bathrooms
+   + Internet 
+   + Terminals ready? 
+   + Other ... ? 
+
+** Intentions 
+   
+   + Pipes and filters 
+   + Loops 
+   + Scripts 
+
+
+** Assumptions 
+
+   + The terminal up and ready to go (with files downloaded)
+   + Little, maybe no experience, with the shell 
+   + Willing to ask questions 
+   + unix-shell folder is on your Desktop 
+
+
+* Pipes and Filters 
+
+** Let's move 
+
+#+BEGIN_SRC unix 
+cd ~/Desktop/unix-data/data-shell/molecules 
+#+END_SRC
+
+
+** wc 
+(word count) 
+
+#+BEGIN_SRC unix 
+wc *.pdb 
+#+END_SRC
+
+** Wildcards 
+
++ * -> zero or more characters 
++ ? -> exactly one character 
+
+** more wc 
+
++ -l -> lines 
++ -c -> characters (windows) 
++ -m -> characters (mac) 
++ -w -> words 
+
+#+BEGIN_SRC unix 
+wc -l *.pdb 
+#+END_SRC
+
+** > 
+(redirect) 
+
+#+BEGIN_SRC unix 
+wc -l *.pdb > lengths.txt 
+#+END_SRC
+
+(don't redirect back to the same file, you'll have issues) 
+
+** >>
+
+What does >> do? 
+
+#+BEGIN_SRC unix 
+echo hi >> test.txt 
+#+END_SRC
+
+** cat 
+(concatenate and print) 
+
+#+BEGIN_SRC unix 
+cat lengths.txt 
+#+END_SRC
+
+(there is also "less") 
+
+** sort 
+(sort) 
+
+#+BEGIN_SRC unix 
+sort -n lengths.txt 
+#+END_SRC
+
+and 
+#+BEGIN_SRC unix 
+sort -n lengths.txt > sorted-lengths.txt
+#+END_SRC
+
+** head 
+(head of the file) 
+
+#+BEGIN_SRC unix 
+head -n 1 sorted-lengths.txt
+#+END_SRC
+
+** | 
+(pipes) 
+
+You can connect commands with pipes 
+
+#+BEGIN_SRC unix 
+ wc -l *.pdb | sort -n
+#+END_SRC
+ 
+and ... 
+
+#+BEGIN_SRC unix 
+wc -l *.pdb | sort -n | head -n 1
+#+END_SRC
+
+** Standard in and out 
+
+use diagram at 
+https://swcarpentry.github.io/shell-novice/04-pipefilter/
+
+** Nelle's Pipeline 
+(let's check-in on Nelle) 
+
+#+BEGIN_SRC unix 
+cd ../north-pacific-gyre/2012-07-03
+#+END_SRC
+
+and run
+
+#+BEGIN_SRC unix 
+wc -l *.txt
+#+END_SRC
+
+** Data check 
+
+#+BEGIN_SRC unix 
+wc -l *.txt | sort -n | head -n 5
+#+END_SRC
+
+(something is up) 
+
+** Let's check the tail 
+
+#+BEGIN_SRC unix 
+wc -l *.txt | sort -n | tail -n 5
+#+END_SRC
+
+(what's that Z?)
+
+** more digging 
+
+#+BEGIN_SRC unix 
+ls *Z.txt
+#+END_SRC
+
+** a little regular expression 
+ 
+To target the AB files 
+
+#+BEGIN_SRC unix 
+ls *[AB].txt
+#+END_SRC
+
+* Loops 
+
+Looping our way to productivity 
+
+** let's get to the same place 
+
+#+BEGIN_SRC unix 
+cd ../../creatures/
+#+END_SRC
+
+(~/Desktop/unix-data/data-shell/creatures) 
+
+** Let's make a backup 
+
+#+BEGIN_SRC talking-point
+cp *.dat original-*.dat
+#+END_SRC
+
+Oh no! That didn't work because it expands to 
+
+#+BEGIN_SRC talking-point
+cp basilisk.dat unicorn.dat original-*.dat
+#+END_SRC
+
+** But we can loop 
+(talk through the looping process) 
+
+#+BEGIN_SRC talking-point
+for [variable] in [list]
+> do
+>    stuff to $[variable]
+> done
+
+#+END_SRC
+
+** Example 1
+
+#+BEGIN_SRC unix 
+for filename in basilisk.dat unicorn.dat
+> do
+>    head -n 3 $filename
+> done
+#+END_SRC
+
+** > and > 
+
+Same symbols but they have different meanings in different contexts. 
+
+** Example 2
+
+#+BEGIN_SRC unix 
+for filename in *.dat 
+> do
+>    echo $filename 
+>    head -n 3 $filename
+> done
+#+END_SRC
+
+** Hit the up key Tom 
+
+Show different syntax 
+
+** A note about white spaces in file names 
+
+** Solving our copying problem 
+
+#+BEGIN_SRC unix 
+for filename in *.dat 
+> do
+>    cp $filename original-$filename 
+> done
+#+END_SRC
+
+** history 
+(see your last commands) 
+
+#+BEGIN_SRC unix
+history | tail -n 5 
+#+END_SRC
+
+! command number to rerun 
+
+** Other fun stuff 
+
+  + ctrl-a and ctrl-e - move to front and end of terminal line 
+  + ctrl-r - reverse search commands  
+  + !! - last command (same as up arrow) 
+  + !$ - last work of last command 
+
+** Nelle's Pipeline 
+   move to north-pacific-gyre/2012-07-03
+
+#+BEGIN_SRC unix
+cd ../north-pacific-gyre/2012-07-03/ 
+#+END_SRC
+   
+** Step 1 
+
+#+BEGIN_SRC unix
+for datafile in NENE*[AB].txt
+> do
+>     echo $datafile
+> done
+#+END_SRC
+
+** Step 2 
+#+BEGIN_SRC unix
+for datafile in NENE*[AB].txt
+> do
+>     echo $datafile stats-$datafile
+> done
+#+END_SRC
+
+** Step 3
+#+BEGIN_SRC unix
+for datafile in NENE*[AB].txt
+> do
+>     echo $datafile 
+>     bash goostats $datafile stats-$datafile
+> done
+#+END_SRC
+
+
+* Scripts 
+Making the computer work for us. 
+
+** Move to the molecules folder 
+
+#+BEGIN_SRC unix
+cd ../../molecules/ 
+#+END_SRC
+
+
+** create middle.sh 
+
+#+BEGIN_SRC unix
+nano middle.sh
+#+END_SRC
+
+and add: 
+
+#+BEGIN_SRC unix
+head -n 15 octane.pdb | tail -n 5
+#+END_SRC
+
+** run a script!!!
+
+#+BEGIN_SRC unix
+bash middle.sh 
+#+END_SRC
+
+** let's add a variable 
+
+Open middle.sh with nano 
+
+#+BEGIN_SRC unix
+head -n 15 "$1" | tail -n 5
+#+END_SRC
+
+run it 
+#+BEGIN_SRC unix
+bash middle.sh octane.pdb 
+#+END_SRC
+
+** more variables! 
+
+#+BEGIN_SRC unix
+head -n "$2" "$1" | tail -n "$3" 
+#+END_SRC
+
+to run it 
+#+BEGIN_SRC unix
+bash middle.sh octane.pdb 15 5
+#+END_SRC
+ 
+** comments for documentation 
+
+#+BEGIN_SRC unix
+# Select lines from the middle of a file.
+# Usage:  middle.sh filename end_line num_lines 
+#+END_SRC
+
+** more than one file
+(a special variable "$@") 
+
+create a new file called sorted.sh
+
+#+BEGIN_SRC unix
+# Sort filenames by their length.
+# Usage: sorted.sh one_or_more_filenames
+
+wc -l "$@" | sort -n
+#+END_SRC
+
+** give it a try  
+
+#+BEGIN_SRC unix
+bash sorted.sh *.pdb ../creatures/*.dat
+#+END_SRC
+
+** let's fail again  
+
+#+BEGIN_SRC unix
+bash sorted.sh
+#+END_SRC
+
+** saving experiments 
+
+#+BEGIN_SRC unix
+history | tail -n 5 > redo-figure-3.sh
+#+END_SRC
+
+** Back to Nelle 
+
+#+BEGIN_SRC unix
+cd ../north-pacific-gyre/2012-07-03/ 
+#+END_SRC
+
+Let's create a script do-stats.sh
+
+** Our script 
+
+#+BEGIN_SRC unix
+# Calculate stats for data files.
+for datafile in "$@"
+do
+    echo $datafile
+    bash goostats $datafile stats-$datafile
+done
+#+END_SRC
+
+** run it! 
+(remember ls NENE*[AB].txt) 
+
+#+BEGIN_SRC unix
+bash do-stats.sh NENE*[AB].txt 
+#+END_SRC
+
+** more fun
+(output only the number of files processed) 
+
+#+BEGIN_SRC unix
+bash do-stats.sh NENE*[AB].txt | wc -l 
+#+END_SRC
+
+** Exercise 
+(think pair share) 
+
+Script reading comprehension at:
+https://swcarpentry.github.io/shell-novice/06-script/
+
+
+* Finding Things 
+(the fun stuff)
+
+** move to data-shell/writing 
+
+** grep 
+(global regular expression print) 
+
+let's look at a file 
+
+#+BEGIN_SRC unix
+cat haiku.txt 
+#+END_SRC
+
+** example 1 and 2 
+
+#1
+#+BEGIN_SRC unix
+grep not haiku.txt 
+#+END_SRC
+
+#2 
+#+BEGIN_SRC unix
+grep The haiku.txt 
+#+END_SRC
+
+** grep -w 
+(grep word)
+
+#+BEGIN_SRC unix
+grep -w The haiku.txt 
+#+END_SRC
+
+** grep -n 
+(grep line numbers) 
+
+#+BEGIN_SRC unix
+grep -n "it" haiku.txt 
+#+END_SRC
+
+** grep -i 
+(grep case-insensitive) 
+
+#+BEGIN_SRC unix
+grep -i -w -n "it" haiku.txt 
+#+END_SRC
+
+** grep -v 
+(grep invert aka lines that do not contain) 
+
+#+BEGIN_SRC unix
+grep -v -w -n "it" haiku.txt 
+#+END_SRC
+
+** -E regular expression power 
+
+#+BEGIN_SRC unix
+grep -E '^.o' haiku.txt
+#+END_SRC
+(second character of the line is an 'o')
+
+^ -> start of the line 
+
+. -> one character 
+
+' quotes -> prevent the shell from expanding 
+
+** find 
+(find files) 
+
+#+BEGIN_SRC unix
+find . 
+#+END_SRC
+
+** find -type 
+
+#+BEGIN_SRC unix
+find . -type d 
+#+END_SRC
+(find things that are a directory) 
+
+#+BEGIN_SRC unix
+find . -type f
+#+END_SRC
+(find things that are a file) 
+
+** find -name  
+
+#+BEGIN_SRC unix
+find . -name *.txt
+#+END_SRC
+(find things named *.txt) 
+
+Expanded too early 
+
+** find -name (proper) 
+
+#+BEGIN_SRC unix
+find . -name '*.txt'
+#+END_SRC
+
+** $() 
+(the shell executes inside the $() first) 
+
+#+BEGIN_SRC unix
+wc -l $(find . -name '*.txt')
+#+END_SRC
+
+** find + grep 
+
+#+BEGIN_SRC unix
+grep "FE" $(find .. -name '*.pdb')
+#+END_SRC
+
+** Final reviews 
+
+Using grep and find on 
+https://swcarpentry.github.io/shell-novice/07-find/
+
+
+

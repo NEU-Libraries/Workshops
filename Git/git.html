@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title></title>
+<meta name="author" content="(Hohenstein)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///Users/hohenstein/tomuments/templates/revealjs/css/reveal.css"/>
+
+<link rel="stylesheet" href="file:///Users/hohenstein/tomuments/templates/revealjs/css/theme/nu-library.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'file:///Users/hohenstein/tomuments/templates/revealjs/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section>
+<section id="slide-org4a56352">
+<h2 id="org4a56352">Git and GitHub</h2>
+<p>
+with Tom Hohenstein 
+</p>
+
+</section>
+<section id="slide-orgfb0b881">
+<h3 id="orgfb0b881">Logistics</h3>
+<ul>
+<li>Bathrooms</li>
+<li>Internet</li>
+<li>Terminals ready?</li>
+<li>Other &#x2026; ?</li>
+
+</ul>
+
+</section>
+<section id="slide-org57347a7">
+<h3 id="org57347a7">Intentions</h3>
+
+
+
+</section>
+<section id="slide-org6ee033e">
+<h3 id="org6ee033e">Assumptions</h3>
+
+
+</section>
+<section id="slide-org8bc9999">
+<h3 id="org8bc9999">Quick Note</h3>
+<p>
+If you already know how to use grep and find, this session might
+only be a refresher. If you're willing, please help new learners. 
+</p>
+
+
+</section>
+<section id="slide-org292fb7a">
+<h3 id="org292fb7a">Command-line interface (CLI)</h3>
+<p>
+Read-Evaluate-Print Loop (REPL) 
+</p>
+
+<p>
+The user provides the computer a command. The computer reads it,
+executes it, and prints its output. 
+</p>
+
+</section>
+<section id="slide-orgcd5db6f">
+<h3 id="orgcd5db6f">Why bother</h3>
+<img src="http://swcarpentry.github.io/git-novice/fig/phd101212s.png" height=600 width=600>
+
+</section>
+<section id="slide-orgbe036b6">
+<h3 id="orgbe036b6">Recording Changes</h3>
+<img src="http://swcarpentry.github.io/git-novice/fig/play-changes.svg">
+<img src="http://swcarpentry.github.io/git-novice/fig/versions.svg" />
+
+</section>
+</section>
+<section>
+<section id="slide-orge9c820b">
+<h2 id="orge9c820b">Setup</h2>
+<p>
+A little terminal magic
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-unix">PS1="$ " 
+</pre>
+</div>
+
+</section>
+<section id="slide-orgf854c35">
+<h3 id="orgf854c35">Setting Up Git - user.name</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">git config --global user.name "Vlad Dracula"
+</pre>
+</div>
+
+</section>
+<section id="slide-org395d485">
+<h3 id="org395d485">Setting up Git - user.email</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">git config --global user.email "vlad@tran.sylvan.ia"
+</pre>
+</div>
+
+</section>
+<section id="slide-orgbaca791">
+<h3 id="orgbaca791">More options</h3>
+<p>
+Visit: 
+<a href="http://swcarpentry.github.io/git-novice/02-setup/index.html">http://swcarpentry.github.io/git-novice/02-setup/index.html</a>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org04790ea">
+<h2 id="org04790ea">Getting Started</h2>
+<div class="outline-text-2" id="text-org04790ea">
+</div>
+</section>
+<section id="slide-orgd4dae9d">
+<h3 id="orgd4dae9d">Let's</h3>
+<ul>
+<li>Move to the desktop</li>
+<li>Make a directory called "planets"</li>
+<li>Move into planets</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-unix">cd ~/Desktop 
+mkdir planets 
+cd planets
+</pre>
+</div>
+
+</section>
+<section id="slide-orga693683">
+<h3 id="orga693683">Create a new repository</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">git init 
+</pre>
+</div>
+
+</section>
+<section id="slide-orgebb66b3">
+<h3 id="orgebb66b3">What happened?</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">ls -a 
+</pre>
+</div>
+
+</section>
+<section id="slide-org18a61ee">
+<h3 id="org18a61ee">What's our status</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">git status 
+</pre>
+</div>
+
+</section>
+<section id="slide-orga6302c3">
+<h3 id="orga6302c3">Check our location</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">pwd
+</pre>
+</div>
+</section>
+<section id="slide-orgd9cceed">
+<h3 id="orgd9cceed">Create mars.txt</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">nano mars.txt
+</pre>
+</div>
+
+<p>
+Type 
+"Cold and dry, but everything is my favorite color" 
+</p>
+
+</section>
+<section id="slide-orgbfe2df2">
+<h3 id="orgbfe2df2">Leaving Nano</h3>
+<p>
+^o (control-o) - write out the file 
+</p>
+
+<p>
+^x (control-x - exit (will prompt to save) 
+</p>
+
+</section>
+<section id="slide-orgf0b72ea">
+<h3 id="orgf0b72ea">Mars.txt</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">ls 
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">cat mars.txt 
+</pre>
+</div>
+
+</section>
+<section id="slide-orga2e1d44">
+<h3 id="orga2e1d44">Check our status</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">git status 
+</pre>
+</div>
+
+</section>
+<section id="slide-org03e5b15">
+<h3 id="org03e5b15">Adding files</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">git add mars.txt 
+</pre>
+</div>
+
+</section>
+<section id="slide-org6abea93">
+<h3 id="org6abea93">Commit our file</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">git commit -m "Start notes on Mars as a base" 
+</pre>
+</div>
+
+</section>
+<section id="slide-orgcf29860">
+<h3 id="orgcf29860">Check our status</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">git status 
+</pre>
+</div>
+</section>
+</section>
+</div>
+</div>
+<script src="file:///Users/hohenstein/tomuments/templates/revealjs/lib/js/head.min.js"></script>
+<script src="file:///Users/hohenstein/tomuments/templates/revealjs/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'file:///Users/hohenstein/tomuments/templates/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'file:///Users/hohenstein/tomuments/templates/revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'file:///Users/hohenstein/tomuments/templates/revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'file:///Users/hohenstein/tomuments/templates/revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'file:///Users/hohenstein/tomuments/templates/revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

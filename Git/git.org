@@ -1,0 +1,152 @@
+#+REVEAL_THEME: nu-library 
+#+OPTIONS: toc:nil num:nil author:nil date:nil reveal_title_slide:nil 
+
+* Git and GitHub 
+  
+  with Tom Hohenstein 
+
+** Logistics 
+
+   + Bathrooms
+   + Internet 
+   + Terminals ready? 
+   + Other ... ? 
+
+** Intentions 
+   
+
+
+** Assumptions 
+
+
+** Quick Note 
+
+   If you already know how to use grep and find, this session might
+   only be a refresher. If you're willing, please help new learners. 
+
+
+** Command-line interface (CLI)
+
+   Read-Evaluate-Print Loop (REPL) 
+   
+   The user provides the computer a command. The computer reads it,
+   executes it, and prints its output. 
+
+** Why bother
+
+#+REVEAL_HTML: <img src="http://swcarpentry.github.io/git-novice/fig/phd101212s.png" height=600 width=600>
+#+REVEAL_HTML:
+
+** Recording Changes 
+
+#+REVEAL_HTML: <img src="http://swcarpentry.github.io/git-novice/fig/play-changes.svg">
+#+REVEAL_HTML: <img src="http://swcarpentry.github.io/git-novice/fig/versions.svg" /> 
+
+* Setup 
+
+A little terminal magic
+#+BEGIN_SRC unix  
+PS1="$ " 
+#+END_SRC
+
+** Setting Up Git - user.name 
+
+#+BEGIN_SRC unix  
+git config --global user.name "Vlad Dracula"
+#+END_SRC 
+
+** Setting up Git - user.email 
+
+#+BEGIN_SRC unix  
+git config --global user.email "vlad@tran.sylvan.ia"
+#+END_SRC 
+
+** More options 
+
+Visit: 
+http://swcarpentry.github.io/git-novice/02-setup/index.html
+
+* Getting Started 
+
+** Let's 
++ Move to the desktop 
++ Make a directory called "planets" 
++ Move into planets
+#+BEGIN_SRC unix  
+cd ~/Desktop 
+mkdir planets 
+cd planets
+#+END_SRC 
+
+** Create a new repository 
+
+#+BEGIN_SRC unix  
+git init 
+#+END_SRC 
+
+** What happened? 
+
+#+BEGIN_SRC unix  
+ls -a 
+#+END_SRC 
+
+** What's our status 
+
+#+BEGIN_SRC unix  
+git status 
+#+END_SRC 
+
+** Check our location 
+
+#+BEGIN_SRC unix  
+pwd
+#+END_SRC 
+** Create mars.txt
+
+#+BEGIN_SRC unix  
+nano mars.txt
+#+END_SRC 
+
+Type 
+"Cold and dry, but everything is my favorite color" 
+
+** Leaving Nano 
+
+^o (control-o) - write out the file 
+
+^x (control-x - exit (will prompt to save) 
+
+** Mars.txt 
+
+#+BEGIN_SRC unix  
+ls 
+#+END_SRC 
+
+#+BEGIN_SRC unix  
+cat mars.txt 
+#+END_SRC 
+
+** Check our status 
+
+#+BEGIN_SRC unix  
+git status 
+#+END_SRC 
+
+** Adding files 
+
+#+BEGIN_SRC unix  
+git add mars.txt 
+#+END_SRC 
+
+** Commit our file 
+
+#+BEGIN_SRC unix  
+git commit -m "Start notes on Mars as a base" 
+#+END_SRC 
+
+** Check our status 
+
+#+BEGIN_SRC unix  
+git status 
+#+END_SRC 
+

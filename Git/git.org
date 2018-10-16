@@ -18,13 +18,9 @@
 
 ** Assumptions 
 
-   + you have git installed 
-   + you have a GitHub account 
-
-** Quick Note 
-
-   If you already know how to use grep and find, this session might
-   only be a refresher. If you're willing, please help new learners. 
+   + you have git installed
+     (https://carpentries.github.io/workshop-template/#git) 
+   + you have a GitHub account (https://github.com/) 
 
 ** Command-line interface (CLI)
 
@@ -32,6 +28,8 @@
    
    The user provides the computer a command. The computer reads it,
    executes it, and prints its output. 
+
+   Git is most commonly used via the CLI 
 
 ** Why bother
 
@@ -54,13 +52,13 @@ PS1="$ "
 ** Setting Up Git - user.name 
 
 #+BEGIN_SRC unix  
-git config --global user.name "Vlad Dracula"
+git config --global user.name "Your name here"
 #+END_SRC 
 
 ** Setting up Git - user.email 
 
 #+BEGIN_SRC unix  
-git config --global user.email "vlad@tran.sylvan.ia"
+git config --global user.email "Your email here"
 #+END_SRC 
 
 ** More options 
@@ -117,14 +115,14 @@ Type
 
 ^o (control-o) - write out the file 
 
-^x (control-x - exit (will prompt to save) 
+^x (control-x - exit, will prompt to save) 
 
 ** Mars.txt 
 
 #+BEGIN_SRC unix  
 ls 
 #+END_SRC 
-
+and 
 #+BEGIN_SRC unix  
 cat mars.txt 
 #+END_SRC 
@@ -142,6 +140,12 @@ git add mars.txt
 #+END_SRC 
 
 ** Commit our file 
+
+#+BEGIN_SRC unix  
+git status 
+#+END_SRC 
+
+and 
 
 #+BEGIN_SRC unix  
 git commit -m "Start notes on Mars as a base" 
@@ -191,11 +195,6 @@ and then
 git commit -m "add concerns about Mars' moons on Wolfman" 
 #+END_SRC 
 
-** git add 
-
-#+BEGIN_SRC unix   
-git add mars.txt 
-#+END_SRC 
 
 ** add more text 
 #+BEGIN_SRC unix   
@@ -203,6 +202,14 @@ nano mars.txt
 #+END_SRC 
 
 Add "But the Mummy will appreciate the lack of humidity" 
+
+
+** git add 
+
+#+BEGIN_SRC unix   
+git add mars.txt 
+#+END_SRC 
+
 
 ** git diff and staging 
 #+BEGIN_SRC unix   
@@ -213,6 +220,11 @@ and then
 #+BEGIN_SRC unix   
 git diff --staged 
 #+END_SRC 
+
+finish with 
+#+BEGIN_SRC unix   
+git commit -m "add Mummy's concerns"  
+#+END_SRC
 
 ** Logging options 
 
@@ -247,13 +259,26 @@ and then
 touch a.dat b.dat c.dat results/a.out results/b.out 
 #+END_SRC 
 
+check our work 
+#+BEGIN_SRC unix   
+ls -R 
+git status 
+#+END_SRC 
+
 ** creating gitignore
 
 #+BEGIN_SRC unix   
 nano .gitignore 
 #+END_SRC 
 
-and then 
+in nano add text 
+
+#+BEGIN_SRC unix   
+*.dat
+results/
+#+END_SRC 
+
+** check our work 
 
 #+BEGIN_SRC unix   
 ls -a 
@@ -273,12 +298,11 @@ git commit -m "ignore data files and the results folder."
 git status  
 #+END_SRC 
 
-** It will prompt you 
+** Gitignore won't ignore you 
 
 #+BEGIN_SRC unix   
 git add a.dat
 #+END_SRC 
-
 
 * Remotes in GitHub 
 
@@ -316,7 +340,7 @@ git push origin master
 visit your repo online
 https://github.com/tomhohenstein/planets
 
-** remove a line and commit 
+** add a line and commit 
 
 ** back to the terminal 
 
@@ -327,10 +351,85 @@ cat mars.txt
 ** pull 
 
 #+BEGIN_SRC unix   
-git push origin master 
+git pull origin master 
 #+END_SRC 
 
 
 * Collaborating 
 
-* Conflicts 
+Visit 
+https://public.etherpad-mozilla.org/p/git-workshop
+
+and add your github username 
+
+** Adding collaborators to your repo 
+
+https://github.com/tomhohenstein/git-workshop
+
+
+
+** Move to our desktop 
+
+#+BEGIN_SRC unix   
+cd ~/Desktop 
+#+END_SRC 
+
+
+** Clone a repo 
+
+#+BEGIN_SRC unix   
+git clone https://github.com/tomhohenstein/git-workshop.git
+#+END_SRC 
+
+** Move into the repo 
+
+#+BEGIN_SRC unix   
+cd git-workshop 
+#+END_SRC 
+
+and 
+
+#+BEGIN_SRC unix   
+git status
+#+END_SRC 
+
+** add a file 
+
+#+BEGIN_SRC unix   
+nano your_username.txt
+#+END_SRC 
+and 
+
+#+BEGIN_SRC unix   
+git add . 
+git commit -m "adding my username file" 
+#+END_SRC 
+
+** push to origin 
+
+#+BEGIN_SRC unix   
+git push origin master
+#+END_SRC 
+
+** wait for minute 
+
+#+BEGIN_SRC unix   
+git pull origin master 
+#+END_SRC 
+
+** let's see our log 
+
+#+BEGIN_SRC unix   
+git log --online --graph --all --decorate
+#+END_SRC 
+
+* More to 
+
++ Conflicts
++ Branches 
+
+and more at: 
+https://git-scm.com/book/en/v2
+
+
+

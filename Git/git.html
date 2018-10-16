@@ -28,15 +28,15 @@
 <div class="slides">
 
 <section>
-<section id="slide-org4a56352">
-<h2 id="org4a56352">Git and GitHub</h2>
+<section id="slide-org4998c89">
+<h2 id="org4998c89">Git and GitHub</h2>
 <p>
 with Tom Hohenstein 
 </p>
 
 </section>
-<section id="slide-orgfb0b881">
-<h3 id="orgfb0b881">Logistics</h3>
+<section id="slide-orgb379ac4">
+<h3 id="orgb379ac4">Logistics</h3>
 <ul>
 <li>Bathrooms</li>
 <li>Internet</li>
@@ -46,28 +46,32 @@ with Tom Hohenstein
 </ul>
 
 </section>
-<section id="slide-org57347a7">
-<h3 id="org57347a7">Intentions</h3>
-
-
-
-</section>
-<section id="slide-org6ee033e">
-<h3 id="org6ee033e">Assumptions</h3>
-
+<section id="slide-org167c74b">
+<h3 id="org167c74b">Intentions</h3>
+<p>
+To give you a basic introduction to git and GitHub 
+</p>
 
 </section>
-<section id="slide-org8bc9999">
-<h3 id="org8bc9999">Quick Note</h3>
+<section id="slide-org4141a0f">
+<h3 id="org4141a0f">Assumptions</h3>
+<ul>
+<li>you have git installed</li>
+<li>you have a GitHub account</li>
+
+</ul>
+
+</section>
+<section id="slide-org92c7315">
+<h3 id="org92c7315">Quick Note</h3>
 <p>
 If you already know how to use grep and find, this session might
 only be a refresher. If you're willing, please help new learners. 
 </p>
 
-
 </section>
-<section id="slide-org292fb7a">
-<h3 id="org292fb7a">Command-line interface (CLI)</h3>
+<section id="slide-org8ccc508">
+<h3 id="org8ccc508">Command-line interface (CLI)</h3>
 <p>
 Read-Evaluate-Print Loop (REPL) 
 </p>
@@ -78,21 +82,22 @@ executes it, and prints its output.
 </p>
 
 </section>
-<section id="slide-orgcd5db6f">
-<h3 id="orgcd5db6f">Why bother</h3>
+<section id="slide-orgd5cfbc9">
+<h3 id="orgd5cfbc9">Why bother</h3>
 <img src="http://swcarpentry.github.io/git-novice/fig/phd101212s.png" height=600 width=600>
 
 </section>
-<section id="slide-orgbe036b6">
-<h3 id="orgbe036b6">Recording Changes</h3>
+<section id="slide-orgba6cdb2">
+<h3 id="orgba6cdb2">Recording Changes</h3>
 <img src="http://swcarpentry.github.io/git-novice/fig/play-changes.svg">
 <img src="http://swcarpentry.github.io/git-novice/fig/versions.svg" />
+
 
 </section>
 </section>
 <section>
-<section id="slide-orge9c820b">
-<h2 id="orge9c820b">Setup</h2>
+<section id="slide-org169626d">
+<h2 id="org169626d">Setup</h2>
 <p>
 A little terminal magic
 </p>
@@ -103,8 +108,8 @@ A little terminal magic
 </div>
 
 </section>
-<section id="slide-orgf854c35">
-<h3 id="orgf854c35">Setting Up Git - user.name</h3>
+<section id="slide-org7fcf892">
+<h3 id="org7fcf892">Setting Up Git - user.name</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">git config --global user.name "Vlad Dracula"
@@ -112,8 +117,8 @@ A little terminal magic
 </div>
 
 </section>
-<section id="slide-org395d485">
-<h3 id="org395d485">Setting up Git - user.email</h3>
+<section id="slide-org6cefad8">
+<h3 id="org6cefad8">Setting up Git - user.email</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">git config --global user.email "vlad@tran.sylvan.ia"
@@ -121,23 +126,24 @@ A little terminal magic
 </div>
 
 </section>
-<section id="slide-orgbaca791">
-<h3 id="orgbaca791">More options</h3>
+<section id="slide-orgbdda098">
+<h3 id="orgbdda098">More options</h3>
 <p>
 Visit: 
 <a href="http://swcarpentry.github.io/git-novice/02-setup/index.html">http://swcarpentry.github.io/git-novice/02-setup/index.html</a>
 </p>
 
+
 </section>
 </section>
 <section>
-<section id="slide-org04790ea">
-<h2 id="org04790ea">Getting Started</h2>
-<div class="outline-text-2" id="text-org04790ea">
+<section id="slide-org483f738">
+<h2 id="org483f738">Getting Started</h2>
+<div class="outline-text-2" id="text-org483f738">
 </div>
 </section>
-<section id="slide-orgd4dae9d">
-<h3 id="orgd4dae9d">Let's</h3>
+<section id="slide-orgb30fec6">
+<h3 id="orgb30fec6">Let's</h3>
 <ul>
 <li>Move to the desktop</li>
 <li>Make a directory called "planets"</li>
@@ -153,8 +159,8 @@ cd planets
 </div>
 
 </section>
-<section id="slide-orga693683">
-<h3 id="orga693683">Create a new repository</h3>
+<section id="slide-org5dfb46b">
+<h3 id="org5dfb46b">Create a new repository</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">git init 
@@ -162,8 +168,8 @@ cd planets
 </div>
 
 </section>
-<section id="slide-orgebb66b3">
-<h3 id="orgebb66b3">What happened?</h3>
+<section id="slide-org17397d7">
+<h3 id="org17397d7">What happened?</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">ls -a 
@@ -171,8 +177,8 @@ cd planets
 </div>
 
 </section>
-<section id="slide-org18a61ee">
-<h3 id="org18a61ee">What's our status</h3>
+<section id="slide-orgc9b8121">
+<h3 id="orgc9b8121">What's our status</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">git status 
@@ -180,16 +186,16 @@ cd planets
 </div>
 
 </section>
-<section id="slide-orga6302c3">
-<h3 id="orga6302c3">Check our location</h3>
+<section id="slide-org7cd6f76">
+<h3 id="org7cd6f76">Check our location</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">pwd
 </pre>
 </div>
 </section>
-<section id="slide-orgd9cceed">
-<h3 id="orgd9cceed">Create mars.txt</h3>
+<section id="slide-org2b0a2df">
+<h3 id="org2b0a2df">Create mars.txt</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">nano mars.txt
@@ -202,8 +208,8 @@ Type
 </p>
 
 </section>
-<section id="slide-orgbfe2df2">
-<h3 id="orgbfe2df2">Leaving Nano</h3>
+<section id="slide-org581a04b">
+<h3 id="org581a04b">Leaving Nano</h3>
 <p>
 ^o (control-o) - write out the file 
 </p>
@@ -213,8 +219,8 @@ Type
 </p>
 
 </section>
-<section id="slide-orgf0b72ea">
-<h3 id="orgf0b72ea">Mars.txt</h3>
+<section id="slide-orgd0fd073">
+<h3 id="orgd0fd073">Mars.txt</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">ls 
@@ -228,8 +234,8 @@ Type
 </div>
 
 </section>
-<section id="slide-orga2e1d44">
-<h3 id="orga2e1d44">Check our status</h3>
+<section id="slide-org33eee2a">
+<h3 id="org33eee2a">Check our status</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">git status 
@@ -237,8 +243,8 @@ Type
 </div>
 
 </section>
-<section id="slide-org03e5b15">
-<h3 id="org03e5b15">Adding files</h3>
+<section id="slide-orgcfc78e4">
+<h3 id="orgcfc78e4">Adding files</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">git add mars.txt 
@@ -246,8 +252,8 @@ Type
 </div>
 
 </section>
-<section id="slide-org6abea93">
-<h3 id="org6abea93">Commit our file</h3>
+<section id="slide-orga48814b">
+<h3 id="orga48814b">Commit our file</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">git commit -m "Start notes on Mars as a base" 
@@ -255,13 +261,242 @@ Type
 </div>
 
 </section>
-<section id="slide-orgcf29860">
-<h3 id="orgcf29860">Check our status</h3>
+<section id="slide-org60f3a6c">
+<h3 id="org60f3a6c">Check our status</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">git status 
 </pre>
 </div>
+
+</section>
+<section id="slide-org5c05195">
+<h3 id="org5c05195">git log</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">git log 
+</pre>
+</div>
+
+</section>
+<section id="slide-orgb80f656">
+<h3 id="orgb80f656">adding more text</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">nano mars.txt 
+</pre>
+</div>
+
+<p>
+Add "The two moons may be a problem for Wolfman" 
+</p>
+
+</section>
+<section id="slide-org0be5412">
+<h3 id="org0be5412">git diff</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">git diff 
+</pre>
+</div>
+
+</section>
+<section id="slide-org90b2492">
+<h3 id="org90b2492">trying to commit</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">git commit -m "add concerns about Mars' moons on Wolfman" 
+</pre>
+</div>
+
+</section>
+<section id="slide-orga47beb6">
+<h3 id="orga47beb6">staging</h3>
+<p>
+Allows us to select files to add and commit together in logical stages 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">git add mars.txt 
+</pre>
+</div>
+
+<p>
+and then 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">git commit -m "add concerns about Mars' moons on Wolfman" 
+</pre>
+</div>
+
+</section>
+<section id="slide-org0b4069f">
+<h3 id="org0b4069f">git add</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">git add mars.txt 
+</pre>
+</div>
+
+</section>
+<section id="slide-orgcb256f4">
+<h3 id="orgcb256f4">add more text</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">nano mars.txt 
+</pre>
+</div>
+
+<p>
+Add "But the Mummy will appreciate the lack of humidity" 
+</p>
+
+</section>
+<section id="slide-org394c193">
+<h3 id="org394c193">git diff and staging</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">git diff 
+</pre>
+</div>
+
+<p>
+and then 
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-unix">git diff --staged 
+</pre>
+</div>
+
+
+</section>
+<section id="slide-orga2a4396">
+<h3 id="orga2a4396">Logging options</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">git log --oneline --graph --all --decorate 
+</pre>
+</div>
+
+</section>
+<section id="slide-orgc509dc8">
+<h3 id="orgc509dc8">A note on directories</h3>
+<p>
+Git doesn't track directories, only the files inside
+</p>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgef04a09">
+<h2 id="orgef04a09">Exploring History</h2>
+<p>
+25 minutes that I decided to skip. More information at: 
+<a href="http://swcarpentry.github.io/git-novice/05-history/index.html">http://swcarpentry.github.io/git-novice/05-history/index.html</a>
+</p>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org5ea48d8">
+<h2 id="org5ea48d8">Ignoring things</h2>
+<p>
+Use .gitignore to ignore files 
+</p>
+
+</section>
+<section id="slide-orgacf674d">
+<h3 id="orgacf674d">Example</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">mkdir results
+</pre>
+</div>
+
+<p>
+and then 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">touch a.dat b.dat c.dat results/a.out results/b.out 
+</pre>
+</div>
+
+</section>
+<section id="slide-orgcfac6d9">
+<h3 id="orgcfac6d9">creating gitignore</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">nano .gitignore 
+</pre>
+</div>
+
+<p>
+and then 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">ls -a 
+</pre>
+</div>
+
+</section>
+<section id="slide-orgdc07e6a">
+<h3 id="orgdc07e6a">and &#x2026;</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">git status 
+</pre>
+</div>
+
+<p>
+and 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">git add .gitignore 
+git commit -m "ignore data files and the results folder." 
+git status  
+</pre>
+</div>
+
+</section>
+<section id="slide-orga679cfd">
+<h3 id="orga679cfd">It will prompt you</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">git add a.dat
+</pre>
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org75636f6">
+<h2 id="org75636f6">Remotes in GitHub</h2>
+<p>
+<a href="https://github.com/">https://github.com/</a>
+</p>
+
+</section>
+<section id="slide-orgd2c689c">
+<h3 id="orgd2c689c">Creating a repo</h3>
+<img src="http://swcarpentry.github.io/git-novice/fig/github-create-repo-02.png">
+
+</section>
+<section id="slide-orgad40ea4">
+<h3 id="orgad40ea4">Connecting the repo and folder</h3>
+<img src="http://swcarpentry.github.io/git-novice/fig/github-find-repo-string.png">
 </section>
 </section>
 </div>

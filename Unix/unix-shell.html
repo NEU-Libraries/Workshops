@@ -28,15 +28,15 @@
 <div class="slides">
 
 <section>
-<section id="slide-orgb1c7e12">
-<h2 id="orgb1c7e12">The Unix Shell - Introducing the Shell</h2>
+<section id="slide-org40b8836">
+<h2 id="org40b8836">The Unix Shell - Introducing the Shell</h2>
 <p>
 with Tom Hohenstein 
 </p>
 
 </section>
-<section id="slide-org9595d90">
-<h3 id="org9595d90">Logistics</h3>
+<section id="slide-org039d042">
+<h3 id="org039d042">Logistics</h3>
 <ul>
 <li>Bathrooms</li>
 <li>Internet</li>
@@ -46,8 +46,8 @@ with Tom Hohenstein
 </ul>
 
 </section>
-<section id="slide-orgae37b7f">
-<h3 id="orgae37b7f">Intentions</h3>
+<section id="slide-org4a38294">
+<h3 id="org4a38294">Intentions</h3>
 <ul>
 <li>Introduce the shell</li>
 <li>Learn to navigate and work with files and directories</li>
@@ -59,19 +59,19 @@ with Tom Hohenstein
 </ul>
 
 </section>
-<section id="slide-orgbf8e376">
-<h3 id="orgbf8e376">Assumptions</h3>
+<section id="slide-orge62e565">
+<h3 id="orge62e565">Assumptions</h3>
 <ul>
 <li>The terminal up and ready to go (with files downloaded)</li>
 <li>Little, maybe no experience, with the shell</li>
 <li>Willing to ask questions</li>
-<li>data-shell folder is on your Desktop</li>
+<li>unix-data folder is on your Desktop</li>
 
 </ul>
 
 </section>
-<section id="slide-orgecd860d">
-<h3 id="orgecd860d">Quick Note</h3>
+<section id="slide-org32a7c1f">
+<h3 id="org32a7c1f">Quick Note</h3>
 <p>
 If you already know how to use grep and find, this session might
 only be a refresher. If you're willing, please help new learners. 
@@ -81,8 +81,8 @@ only be a refresher. If you're willing, please help new learners.
 </section>
 </section>
 <section>
-<section id="slide-orgfa046a1">
-<h2 id="orgfa046a1">What is the shell?</h2>
+<section id="slide-orgb016b81">
+<h2 id="orgb016b81">What is the shell?</h2>
 <p>
 A "shell" around the operating system that hides some its complexity
 and makes it easier for us to interact with. 
@@ -94,8 +94,8 @@ Bourne. The default shell on most unix systems.
 </p>
 
 </section>
-<section id="slide-org443ea69">
-<h3 id="org443ea69">Command-line interface (CLI)</h3>
+<section id="slide-orgd2a8ac1">
+<h3 id="orgd2a8ac1">Command-line interface (CLI)</h3>
 <p>
 Read-Evaluate-Print Loop (REPL) 
 </p>
@@ -106,8 +106,8 @@ executes it, and prints its output.
 </p>
 
 </section>
-<section id="slide-org662dcaa">
-<h3 id="org662dcaa">Why bother</h3>
+<section id="slide-org4bdb428">
+<h3 id="org4bdb428">Why bother</h3>
 <p>
 Automation! 
 </p>
@@ -119,8 +119,8 @@ is surprising powerful. (and it creates reproducible workflows)
 </p>
 
 </section>
-<section id="slide-org0580fee">
-<h3 id="org0580fee">Case study Nelle</h3>
+<section id="slide-orgf776ca6">
+<h3 id="orgf776ca6">Case study Nelle</h3>
 <p>
 Nelle, a marine biologist, has a bunch of data to analyze using two
 programs - goostats and goodiff. If she does this by hand, she'll
@@ -134,13 +134,13 @@ There must be a better way&#x2026;
 </section>
 </section>
 <section>
-<section id="slide-orgc3fb3d3">
-<h2 id="orgc3fb3d3">Navigating Files and Directories</h2>
-<div class="outline-text-2" id="text-orgc3fb3d3">
+<section id="slide-org4520a50">
+<h2 id="org4520a50">Navigating Files and Directories</h2>
+<div class="outline-text-2" id="text-org4520a50">
 </div>
 </section>
-<section id="slide-orga830eb2">
-<h3 id="orga830eb2">Preparation Magic</h3>
+<section id="slide-org95ae64c">
+<h3 id="org95ae64c">Preparation Magic</h3>
 <p>
 This will help ensure our terminals look the same 
 </p>
@@ -150,10 +150,18 @@ This will help ensure our terminals look the same
 <pre  class="src src-unix">PS1='$ ' 
 </pre>
 </div>
+<p>
+and 
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-unix">cd ~/Desktop/unix-data
+</pre>
+</div>
 
 </section>
-<section id="slide-orgd7ab167">
-<h3 id="orgd7ab167">Our first command</h3>
+<section id="slide-org3204f02">
+<h3 id="org3204f02">Our first command</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">whoami 
@@ -161,8 +169,8 @@ This will help ensure our terminals look the same
 </div>
 
 </section>
-<section id="slide-org876f0c4">
-<h3 id="org876f0c4">Our first failure</h3>
+<section id="slide-org4de87a8">
+<h3 id="org4de87a8">Our first failure</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">tom
@@ -170,16 +178,16 @@ This will help ensure our terminals look the same
 </div>
 
 </section>
-<section id="slide-orge2260de">
-<h3 id="orge2260de">Quick Note</h3>
+<section id="slide-org89d251c">
+<h3 id="org89d251c">Quick Note</h3>
 <p>
 Unix is great at giving negative feedback. Don't take it personally :
 ) 
 </p>
 
 </section>
-<section id="slide-orgfab3543">
-<h3 id="orgfab3543">Where are we</h3>
+<section id="slide-orga4e9195">
+<h3 id="orga4e9195">Where are we</h3>
 <p>
 (print working directory) 
 </p>
@@ -191,15 +199,15 @@ Unix is great at giving negative feedback. Don't take it personally :
 </div>
 
 </section>
-<section id="slide-org182727b">
-<h3 id="org182727b">What is happening?</h3>
+<section id="slide-orgc26f2eb">
+<h3 id="orgc26f2eb">What is happening?</h3>
 <p>
 (quick answer) 
 </p>
 
 </section>
-<section id="slide-orgd45226b">
-<h3 id="orgd45226b">List</h3>
+<section id="slide-org0bbb252">
+<h3 id="org0bbb252">List</h3>
 <p>
 (list directory contents) 
 </p>
@@ -211,8 +219,8 @@ Unix is great at giving negative feedback. Don't take it personally :
 </div>
 
 </section>
-<section id="slide-org1db9a7f">
-<h3 id="org1db9a7f">Getting Help</h3>
+<section id="slide-org8811ee1">
+<h3 id="org8811ee1">Getting Help</h3>
 <p>
 Mac and Unix - use "man" plus program (man is short for manual) 
 </p>
@@ -228,11 +236,11 @@ Windows: Visit <a href="http://man.he.net/y">http://man.he.net/y</a>
 </p>
 
 </section>
-<section id="slide-org9d86abf">
-<h3 id="org9d86abf">Hit q to exit</h3>
+<section id="slide-org0c6123d">
+<h3 id="org0c6123d">Hit q to exit</h3>
 </section>
-<section id="slide-orgc0409b3">
-<h3 id="orgc0409b3">Commands, Options, and Arguments</h3>
+<section id="slide-org0d86186">
+<h3 id="org0d86186">Commands, Options, and Arguments</h3>
 <p>
 Tricky things to grasp but think of the general Unix command structure
 as: 
@@ -245,8 +253,8 @@ as:
 </div>
 
 </section>
-<section id="slide-orgccb38f9">
-<h3 id="orgccb38f9">LS Example Option 1</h3>
+<section id="slide-org36c8831">
+<h3 id="org36c8831">LS Example Option 1</h3>
 <p>
 (list in the long format)
 </p>
@@ -258,8 +266,8 @@ as:
 </div>
 
 </section>
-<section id="slide-org7082869">
-<h3 id="org7082869">LS Example Option 2</h3>
+<section id="slide-org65b3a70">
+<h3 id="org65b3a70">LS Example Option 2</h3>
 <p>
 (list with directory slashes) 
 </p>
@@ -271,8 +279,8 @@ as:
 </div>
 
 </section>
-<section id="slide-org0f2203c">
-<h3 id="org0f2203c">LS Example Option 3</h3>
+<section id="slide-org92c9653">
+<h3 id="org92c9653">LS Example Option 3</h3>
 <p>
 (list all and directory slashes) 
 </p>
@@ -294,8 +302,8 @@ OR
 </div>
 
 </section>
-<section id="slide-org56fcf63">
-<h3 id="org56fcf63">Let's fail again</h3>
+<section id="slide-org59f80a8">
+<h3 id="org59f80a8">Let's fail again</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">ls -j
@@ -303,8 +311,8 @@ OR
 </div>
 
 </section>
-<section id="slide-org59fe7a0">
-<h3 id="org59fe7a0">Activity</h3>
+<section id="slide-org0705a12">
+<h3 id="org0705a12">Activity</h3>
 <p>
 (think, pair, share) 
 </p>
@@ -332,15 +340,15 @@ What will the following do?
 </div>
 
 </section>
-<section id="slide-org4d07bab">
-<h3 id="org4d07bab">LS Example 4</h3>
+<section id="slide-org9b93999">
+<h3 id="org9b93999">LS Example 4</h3>
 <p>
 You can use ls to see the listing of any directory
 </p>
 
 <div class="org-src-container">
 
-<pre  class="src src-unix">ls data 
+<pre  class="src src-unix">ls data-shell 
 </pre>
 </div>
 
@@ -350,13 +358,13 @@ and
 
 <div class="org-src-container">
 
-<pre  class="src src-unix">ls data/elements 
+<pre  class="src src-unix">ls data-shell/data/elements
 </pre>
 </div>
 
 </section>
-<section id="slide-org3a1ca00">
-<h3 id="org3a1ca00">Reset</h3>
+<section id="slide-org507d8a6">
+<h3 id="org507d8a6">Reset</h3>
 <p>
 What directory are we all in? 
 </p>
@@ -373,13 +381,13 @@ Let's move to the same location
 
 <div class="org-src-container">
 
-<pre  class="src src-unix">cd ~/Desktop/data-shell 
+<pre  class="src src-unix">cd ~/Desktop/unix-data
 </pre>
 </div>
 
 </section>
-<section id="slide-org9014b6e">
-<h3 id="org9014b6e">cd</h3>
+<section id="slide-org9631654">
+<h3 id="org9631654">cd</h3>
 <p>
 (change directory) 
 </p>
@@ -391,8 +399,8 @@ Let's move to the same location
 </div>
 
 </section>
-<section id="slide-org3cdd085">
-<h3 id="org3cdd085">Interesting point(s)</h3>
+<section id="slide-org1200ec6">
+<h3 id="org1200ec6">Interesting point(s)</h3>
 <p>
 What do the following do? 
 </p>
@@ -412,8 +420,8 @@ and
 </div>
 
 </section>
-<section id="slide-orgd0a8ce2">
-<h3 id="orgd0a8ce2">Wait there's more!</h3>
+<section id="slide-orgd266487">
+<h3 id="orgd266487">Wait there's more!</h3>
 <p>
 Try 
 </p>
@@ -424,8 +432,8 @@ Try
 </div>
 
 </section>
-<section id="slide-org3662f2a">
-<h3 id="org3662f2a">~, -, tab complete</h3>
+<section id="slide-org050212e">
+<h3 id="org050212e">~, -, tab complete</h3>
 <p>
 "~" -&gt; current users home directory 
 </p>
@@ -440,21 +448,21 @@ hit tab to auto complete
 
 <div class="org-src-container">
 
-<pre  class="src src-unix">cd ~/Desktop/data-shell 
+<pre  class="src src-unix">cd ~/Desktop/unix-data/data-shell 
 </pre>
 </div>
 
 </section>
-<section id="slide-orga8c74b0">
-<h3 id="orga8c74b0">Relative and Absolute Paths</h3>
+<section id="slide-orgc5f3f2c">
+<h3 id="orgc5f3f2c">Relative and Absolute Paths</h3>
 <p>
 Go to absolute and relative path diagram at:
 <a href="https://swcarpentry.github.io/shell-novice/02-filedir/">https://swcarpentry.github.io/shell-novice/02-filedir/</a>
 </p>
 
 </section>
-<section id="slide-orgd44ef6a">
-<h3 id="orgd44ef6a">mkdir</h3>
+<section id="slide-org3385708">
+<h3 id="org3385708">mkdir</h3>
 <p>
 (make directory) 
 </p>
@@ -466,8 +474,8 @@ Go to absolute and relative path diagram at:
 </div>
 
 </section>
-<section id="slide-org5ff4f73">
-<h3 id="org5ff4f73">A note on naming things</h3>
+<section id="slide-orgfdec56a">
+<h3 id="orgfdec56a">A note on naming things</h3>
 <ul>
 <li>Don't use whitespaces</li>
 <li>Don't begin with "-"</li>
@@ -477,8 +485,8 @@ Go to absolute and relative path diagram at:
 </ul>
 
 </section>
-<section id="slide-org1aeefb1">
-<h3 id="org1aeefb1">Start writing</h3>
+<section id="slide-org9b07b95">
+<h3 id="org9b07b95">Start writing</h3>
 <p>
 Move into "thesis" 
 </p>
@@ -490,8 +498,8 @@ Move into "thesis"
 </div>
 
 </section>
-<section id="slide-org5c60cfa">
-<h3 id="org5c60cfa">Nano</h3>
+<section id="slide-orgeba4908">
+<h3 id="orgeba4908">Nano</h3>
 <ul>
 <li>^x -&gt; Control-X or Ctrl-X (exit)</li>
 <li>^o -&gt; Control-O or Ctrl-O (write-out)</li>
@@ -499,8 +507,8 @@ Move into "thesis"
 </ul>
 
 </section>
-<section id="slide-orged133af">
-<h3 id="orged133af">rm</h3>
+<section id="slide-org1a2123a">
+<h3 id="org1a2123a">rm</h3>
 <p>
 (remove) 
 </p>
@@ -511,8 +519,8 @@ is gone, it is gone.
 </p>
 
 </section>
-<section id="slide-orgc52965c">
-<h3 id="orgc52965c">rm</h3>
+<section id="slide-orge416135">
+<h3 id="orge416135">rm</h3>
 <p>
 (remove) 
 </p>
@@ -524,8 +532,8 @@ is gone, it is gone.
 </div>
 
 </section>
-<section id="slide-org3d07881">
-<h3 id="org3d07881">rm recursively</h3>
+<section id="slide-org6b179f3">
+<h3 id="org6b179f3">rm recursively</h3>
 <p>
 Hey - you probably don't want to do this. Just saying&#x2026; 
 </p>
@@ -546,8 +554,8 @@ or add -i for interactive
 </div>
 
 </section>
-<section id="slide-orga6ff5bc">
-<h3 id="orga6ff5bc">mv</h3>
+<section id="slide-org06cee05">
+<h3 id="org06cee05">mv</h3>
 <p>
 (move) (or rename) 
 </p>
@@ -564,8 +572,8 @@ for interactive to help avoid this.
 </p>
 
 </section>
-<section id="slide-org78e2fde">
-<h3 id="org78e2fde">cp</h3>
+<section id="slide-orge2bc89c">
+<h3 id="orge2bc89c">cp</h3>
 <p>
 (copy) 
 </p>
@@ -577,8 +585,8 @@ for interactive to help avoid this.
 </div>
 
 </section>
-<section id="slide-org33953d5">
-<h3 id="org33953d5">Exercise</h3>
+<section id="slide-orgeeb2b32">
+<h3 id="orgeeb2b32">Exercise</h3>
 <p>
 (think pair share) 
 </p>
@@ -596,19 +604,27 @@ and moving and copying at
 </section>
 </section>
 <section>
-<section id="slide-orgd0aaf06">
-<h2 id="orgd0aaf06">Pipes and Filters</h2>
-<div class="outline-text-2" id="text-orgd0aaf06">
+<section id="slide-org4f4e5ce">
+<h2 id="org4f4e5ce">Pipes and Filters</h2>
+<div class="outline-text-2" id="text-org4f4e5ce">
 </div>
 </section>
-<section id="slide-orgc6ec98e">
-<h3 id="orgc6ec98e">Let's move</h3>
+<section id="slide-orgff0d6e8">
+<h3 id="orgff0d6e8">Let's move</h3>
 <p>
 to the molecules directory
 </p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">cd ~/Desktop/unix-data/data-shell/molecules
+</pre>
+</div>
+
+
 </section>
-<section id="slide-org7e74728">
-<h3 id="org7e74728">wc</h3>
+<section id="slide-org7803cff">
+<h3 id="org7803cff">wc</h3>
 <p>
 (word count) 
 </p>
@@ -620,8 +636,8 @@ to the molecules directory
 </div>
 
 </section>
-<section id="slide-org127e028">
-<h3 id="org127e028">Wildcards</h3>
+<section id="slide-org871b378">
+<h3 id="org871b378">Wildcards</h3>
 <ul>
 <li>* -&gt; zero or more characters</li>
 <li>? -&gt; exactly one character</li>
@@ -629,8 +645,8 @@ to the molecules directory
 </ul>
 
 </section>
-<section id="slide-org74d9703">
-<h3 id="org74d9703">more wc</h3>
+<section id="slide-org980b4ba">
+<h3 id="org980b4ba">more wc</h3>
 <ul>
 <li>-l -&gt; lines</li>
 <li>-c -&gt; characters (windows)</li>
@@ -646,8 +662,8 @@ to the molecules directory
 </div>
 
 </section>
-<section id="slide-orgdfc61ef">
-<h3 id="orgdfc61ef">&gt;</h3>
+<section id="slide-org46d33a3">
+<h3 id="org46d33a3">&gt;</h3>
 <p>
 (redirect) 
 </p>
@@ -663,8 +679,8 @@ to the molecules directory
 </p>
 
 </section>
-<section id="slide-org5b32522">
-<h3 id="org5b32522">&gt;&gt;</h3>
+<section id="slide-org83793f3">
+<h3 id="org83793f3">&gt;&gt;</h3>
 <p>
 What does &gt;&gt; do? 
 </p>
@@ -676,8 +692,8 @@ What does &gt;&gt; do?
 </div>
 
 </section>
-<section id="slide-orgfb698e7">
-<h3 id="orgfb698e7">cat</h3>
+<section id="slide-org593419c">
+<h3 id="org593419c">cat</h3>
 <p>
 (concatenate and print) 
 </p>
@@ -693,8 +709,8 @@ What does &gt;&gt; do?
 </p>
 
 </section>
-<section id="slide-org9fb8aba">
-<h3 id="org9fb8aba">sort</h3>
+<section id="slide-orgb275be9">
+<h3 id="orgb275be9">sort</h3>
 <p>
 (sort) 
 </p>
@@ -715,8 +731,8 @@ and
 </div>
 
 </section>
-<section id="slide-org0ca9265">
-<h3 id="org0ca9265">head</h3>
+<section id="slide-orge988c28">
+<h3 id="orge988c28">head</h3>
 <p>
 (head of the file) 
 </p>
@@ -728,8 +744,8 @@ and
 </div>
 
 </section>
-<section id="slide-orgb21a97b">
-<h3 id="orgb21a97b">|</h3>
+<section id="slide-orgdf6ec84">
+<h3 id="orgdf6ec84">|</h3>
 <p>
 (pipes) 
 </p>
@@ -755,30 +771,30 @@ and &#x2026;
 </div>
 
 </section>
-<section id="slide-orge618758">
-<h3 id="orge618758">Standard in and out</h3>
+<section id="slide-orgb314f0d">
+<h3 id="orgb314f0d">Standard in and out</h3>
 <p>
 use diagram at 
 <a href="https://swcarpentry.github.io/shell-novice/04-pipefilter/">https://swcarpentry.github.io/shell-novice/04-pipefilter/</a>
 </p>
 
 </section>
-<section id="slide-orgc95e85f">
-<h3 id="orgc95e85f">Nelle's Pipeline</h3>
+<section id="slide-org4bfff6a">
+<h3 id="org4bfff6a">Nelle's Pipeline</h3>
 <p>
 (let's check-in on Nelle) 
 </p>
 
 <div class="org-src-container">
 
-<pre  class="src src-unix">cd north-pacific-gyre/2012-07-03
+<pre  class="src src-unix">cd ../north-pacific-gyre/2012-07-03
 wc -l *.txt
 </pre>
 </div>
 
 </section>
-<section id="slide-org2b29789">
-<h3 id="org2b29789">Data check</h3>
+<section id="slide-org0e447f1">
+<h3 id="org0e447f1">Data check</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">wc -l *.txt | sort -n | head -n 5
@@ -790,8 +806,8 @@ wc -l *.txt
 </p>
 
 </section>
-<section id="slide-orgb58c659">
-<h3 id="orgb58c659">Let's check the tail</h3>
+<section id="slide-org591ac68">
+<h3 id="org591ac68">Let's check the tail</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">wc -l *.txt | sort -n | tail -n 5
@@ -803,8 +819,8 @@ wc -l *.txt
 </p>
 
 </section>
-<section id="slide-org55039e3">
-<h3 id="org55039e3">more digging</h3>
+<section id="slide-org46f8994">
+<h3 id="org46f8994">more digging</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">ls *Z.txt
@@ -812,8 +828,8 @@ wc -l *.txt
 </div>
 
 </section>
-<section id="slide-orgbc168fd">
-<h3 id="orgbc168fd">a little regular expression</h3>
+<section id="slide-org67175c2">
+<h3 id="org67175c2">a little regular expression</h3>
 <p>
 To target the AB files 
 </p>
@@ -828,24 +844,24 @@ To target the AB files
 </section>
 </section>
 <section>
-<section id="slide-org3a6cd8c">
-<h2 id="org3a6cd8c">Loops</h2>
+<section id="slide-org6cef5a0">
+<h2 id="org6cef5a0">Loops</h2>
 <p>
 Looping our way to productivity 
 </p>
 
 </section>
-<section id="slide-org19733f5">
-<h3 id="org19733f5">let's get to the same place</h3>
+<section id="slide-org8529ba1">
+<h3 id="org8529ba1">let's get to the same place</h3>
 <div class="org-src-container">
 
-<pre  class="src src-unix">cd ~/Desktop/data-shell/creatures/
+<pre  class="src src-unix">cd ~/Desktop/unix-data/data-shell/creatures/
 </pre>
 </div>
 
 </section>
-<section id="slide-org7d0d182">
-<h3 id="org7d0d182">Let's make a backup</h3>
+<section id="slide-orgdc18c6b">
+<h3 id="orgdc18c6b">Let's make a backup</h3>
 <div class="org-src-container">
 
 <pre  class="src src-talking-point">cp *.dat original-*.dat
@@ -863,8 +879,8 @@ Oh no! That didn't work because it expands to
 </div>
 
 </section>
-<section id="slide-orgad1edde">
-<h3 id="orgad1edde">But we can loop</h3>
+<section id="slide-org91db2e1">
+<h3 id="org91db2e1">But we can loop</h3>
 <p>
 (talk through the looping process) 
 </p>
@@ -880,8 +896,8 @@ Oh no! That didn't work because it expands to
 </div>
 
 </section>
-<section id="slide-orgdf25868">
-<h3 id="orgdf25868">Example 1</h3>
+<section id="slide-org819f3ae">
+<h3 id="org819f3ae">Example 1</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">for filename in basilisk.dat unicorn.dat
@@ -892,15 +908,15 @@ Oh no! That didn't work because it expands to
 </div>
 
 </section>
-<section id="slide-org1276897">
-<h3 id="org1276897">&gt; and &gt;</h3>
+<section id="slide-org6ed2a32">
+<h3 id="org6ed2a32">&gt; and &gt;</h3>
 <p>
 Same symbols but they have different meanings in different contexts. 
 </p>
 
 </section>
-<section id="slide-org30c4264">
-<h3 id="org30c4264">Example 2</h3>
+<section id="slide-org362ef0e">
+<h3 id="org362ef0e">Example 2</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">for filename in *.dat 
@@ -912,19 +928,19 @@ Same symbols but they have different meanings in different contexts.
 </div>
 
 </section>
-<section id="slide-orgb674d68">
-<h3 id="orgb674d68">Hit the up key Tom</h3>
+<section id="slide-orgfaf6f87">
+<h3 id="orgfaf6f87">Hit the up key Tom</h3>
 <p>
 Show different syntax 
 </p>
 
 </section>
-<section id="slide-org6ecc59d">
-<h3 id="org6ecc59d">A note about white spaces in file names</h3>
+<section id="slide-org4dae69b">
+<h3 id="org4dae69b">A note about white spaces in file names</h3>
 
 </section>
-<section id="slide-org5d05143">
-<h3 id="org5d05143">Solving our copying problem</h3>
+<section id="slide-org8d250ab">
+<h3 id="org8d250ab">Solving our copying problem</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">for filename in *.dat 
@@ -935,8 +951,8 @@ Show different syntax
 </div>
 
 </section>
-<section id="slide-org8f2a70a">
-<h3 id="org8f2a70a">history</h3>
+<section id="slide-orgd052777">
+<h3 id="orgd052777">history</h3>
 <p>
 (see your last commands) 
 </p>
@@ -952,8 +968,8 @@ Show different syntax
 </p>
 
 </section>
-<section id="slide-org55de08a">
-<h3 id="org55de08a">Other fun stuff</h3>
+<section id="slide-org6175684">
+<h3 id="org6175684">Other fun stuff</h3>
 <ul>
 <li>ctrl-a and ctrl-e - move to front and end of terminal line</li>
 <li>ctrl-r - reverse search commands</li>
@@ -963,15 +979,21 @@ Show different syntax
 </ul>
 
 </section>
-<section id="slide-orgf7445d3">
-<h3 id="orgf7445d3">Nelle's Pipeline</h3>
+<section id="slide-orgc75a699">
+<h3 id="orgc75a699">Nelle's Pipeline</h3>
 <p>
 move to north-pacific-gyre/2012-07-03
 </p>
 
+<div class="org-src-container">
+
+<pre  class="src src-unix">cd ../north-pacific-gyre/2012-07-03
+</pre>
+</div>
+
 </section>
-<section id="slide-orgd38dd6c">
-<h3 id="orgd38dd6c">Step 1</h3>
+<section id="slide-org81a8525">
+<h3 id="org81a8525">Step 1</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">for datafile in NENE*[AB].txt
@@ -982,8 +1004,8 @@ move to north-pacific-gyre/2012-07-03
 </div>
 
 </section>
-<section id="slide-orgadb3a89">
-<h3 id="orgadb3a89">Step 2</h3>
+<section id="slide-orgd60a405">
+<h3 id="orgd60a405">Step 2</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">for datafile in NENE*[AB].txt
@@ -994,8 +1016,8 @@ move to north-pacific-gyre/2012-07-03
 </div>
 
 </section>
-<section id="slide-orgd1b4719">
-<h3 id="orgd1b4719">Step 3</h3>
+<section id="slide-org0500a58">
+<h3 id="org0500a58">Step 3</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">for datafile in NENE*[AB].txt
@@ -1007,8 +1029,8 @@ move to north-pacific-gyre/2012-07-03
 </div>
 
 </section>
-<section id="slide-org9fcc033">
-<h3 id="org9fcc033">Check on learning</h3>
+<section id="slide-org0bd5b3e">
+<h3 id="org0bd5b3e">Check on learning</h3>
 <p>
 Doing a dry run at: 
 <a href="https://swcarpentry.github.io/shell-novice/05-loop/">https://swcarpentry.github.io/shell-novice/05-loop/</a>
@@ -1018,24 +1040,34 @@ Doing a dry run at:
 </section>
 </section>
 <section>
-<section id="slide-orge3038a3">
-<h2 id="orge3038a3">Scripts</h2>
+<section id="slide-org2845a3b">
+<h2 id="org2845a3b">Scripts</h2>
 <p>
 Making the computer work for us. 
 </p>
 
 </section>
-<section id="slide-org9c6b4af">
-<h3 id="org9c6b4af">Move to the molecules folder</h3>
-
-</section>
-<section id="slide-org031cf54">
-<h3 id="org031cf54">create middle.sh</h3>
+<section id="slide-orgade8c91">
+<h3 id="orgade8c91">Move to the molecules folder</h3>
 <div class="org-src-container">
 
-<pre  class="src src-unix">head -n 15 octane.pdb | tail -n 5
+<pre  class="src src-unix">cd ../../molecules 
 </pre>
 </div>
+
+
+</section>
+<section id="slide-orgfe772c6">
+<h3 id="orgfe772c6">create middle.sh</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">nano middle.sh 
+</pre>
+</div>
+
+<p>
+add "head -n 15 octane.pdb | tail -n 5" 
+</p>
 
 <p>
 to run it 
@@ -1047,8 +1079,8 @@ to run it
 </div>
 
 </section>
-<section id="slide-org01f1b2d">
-<h3 id="org01f1b2d">let's add a variable</h3>
+<section id="slide-org39b0bf5">
+<h3 id="org39b0bf5">let's add a variable</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">head -n 15 "$1" | tail -n 5
@@ -1065,8 +1097,8 @@ to run it
 </div>
 
 </section>
-<section id="slide-org90d6437">
-<h3 id="org90d6437">more variables</h3>
+<section id="slide-orgff1af5b">
+<h3 id="orgff1af5b">more variables</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">head -n "$2" "$1" | tail -n "$3" 
@@ -1083,8 +1115,8 @@ to run it
 </div>
 
 </section>
-<section id="slide-orgd44a83f">
-<h3 id="orgd44a83f">comments for documentation</h3>
+<section id="slide-org1547603">
+<h3 id="org1547603">comments for documentation</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix"># Select lines from the middle of a file.
@@ -1093,8 +1125,8 @@ to run it
 </div>
 
 </section>
-<section id="slide-org6c218c0">
-<h3 id="org6c218c0">more than one file</h3>
+<section id="slide-orge3e55bf">
+<h3 id="orge3e55bf">more than one file</h3>
 <p>
 (a special variable "$@") 
 </p>
@@ -1112,8 +1144,8 @@ wc -l "$@" | sort -n
 </div>
 
 </section>
-<section id="slide-org27ecad7">
-<h3 id="org27ecad7">give it a try</h3>
+<section id="slide-orge8e81c6">
+<h3 id="orge8e81c6">give it a try</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">bash sorted.sh *.pdb ../creatures/*.dat
@@ -1121,8 +1153,8 @@ wc -l "$@" | sort -n
 </div>
 
 </section>
-<section id="slide-orgc9964c2">
-<h3 id="orgc9964c2">let's fail again</h3>
+<section id="slide-orgc302066">
+<h3 id="orgc302066">let's fail again</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">bash sorted.sh
@@ -1130,8 +1162,8 @@ wc -l "$@" | sort -n
 </div>
 
 </section>
-<section id="slide-org5b7512a">
-<h3 id="org5b7512a">saving experiments</h3>
+<section id="slide-org4bae703">
+<h3 id="org4bae703">saving experiments</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">history | tail -n 5 &gt; redo-figure-3.sh
@@ -1139,19 +1171,25 @@ wc -l "$@" | sort -n
 </div>
 
 </section>
-<section id="slide-org72c1f46">
-<h3 id="org72c1f46">Back to Nelle</h3>
+<section id="slide-org068011f">
+<h3 id="org068011f">Back to Nelle</h3>
 <p>
 (and the north-pacific-gyre/2017-07-03/) 
 </p>
+
+<div class="org-src-container">
+
+<pre  class="src src-unix">cd ../north-pacifc-gyre/2017-07-03
+</pre>
+</div>
 
 <p>
 Let's create a script do-stats.sh
 </p>
 
 </section>
-<section id="slide-org0fd3909">
-<h3 id="org0fd3909">Our script</h3>
+<section id="slide-orgde52393">
+<h3 id="orgde52393">Our script</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix"># Calculate stats for data files.
@@ -1164,8 +1202,8 @@ done
 </div>
 
 </section>
-<section id="slide-org59b93e8">
-<h3 id="org59b93e8">run it!</h3>
+<section id="slide-orgadeaebd">
+<h3 id="orgadeaebd">run it!</h3>
 <p>
 (remember ls NENE*[AB].txt) 
 </p>
@@ -1177,8 +1215,8 @@ done
 </div>
 
 </section>
-<section id="slide-orgcaa375f">
-<h3 id="orgcaa375f">more fun</h3>
+<section id="slide-org68c1497">
+<h3 id="org68c1497">more fun</h3>
 <p>
 (output only the number of file processed) 
 </p>
@@ -1190,8 +1228,8 @@ done
 </div>
 
 </section>
-<section id="slide-org1badb17">
-<h3 id="org1badb17">Exercise</h3>
+<section id="slide-org59387be">
+<h3 id="org59387be">Exercise</h3>
 <p>
 (think pair share) 
 </p>
@@ -1205,19 +1243,25 @@ Script reading comprehension at:
 </section>
 </section>
 <section>
-<section id="slide-orgd7a0f30">
-<h2 id="orgd7a0f30">Finding Things</h2>
+<section id="slide-org879e0ad">
+<h2 id="org879e0ad">Finding Things</h2>
 <p>
 (the fun stuff)
 </p>
 
 </section>
-<section id="slide-orgc8063a2">
-<h3 id="orgc8063a2">move to data-shell/writing</h3>
+<section id="slide-org2232bcf">
+<h3 id="org2232bcf">move to data-shell/writing</h3>
+<div class="org-src-container">
+
+<pre  class="src src-unix">cd ../../writing 
+</pre>
+</div>
+
 
 </section>
-<section id="slide-orga44e2d6">
-<h3 id="orga44e2d6">grep</h3>
+<section id="slide-orga20be89">
+<h3 id="orga20be89">grep</h3>
 <p>
 (global regular expression print) 
 </p>
@@ -1233,8 +1277,8 @@ let's look at a file
 </div>
 
 </section>
-<section id="slide-orge6a8903">
-<h3 id="orge6a8903">example 1 and 2</h3>
+<section id="slide-orgce1ccb7">
+<h3 id="orgce1ccb7">example 1 and 2</h3>
 <p>
 #1
 </p>
@@ -1254,8 +1298,8 @@ let's look at a file
 </div>
 
 </section>
-<section id="slide-org445fe74">
-<h3 id="org445fe74">grep -w</h3>
+<section id="slide-org9d6af5d">
+<h3 id="org9d6af5d">grep -w</h3>
 <p>
 (grep word)
 </p>
@@ -1267,8 +1311,8 @@ let's look at a file
 </div>
 
 </section>
-<section id="slide-org5269780">
-<h3 id="org5269780">grep -n</h3>
+<section id="slide-org9fbba26">
+<h3 id="org9fbba26">grep -n</h3>
 <p>
 (grep line numbers) 
 </p>
@@ -1280,8 +1324,8 @@ let's look at a file
 </div>
 
 </section>
-<section id="slide-orgd4c744d">
-<h3 id="orgd4c744d">grep -i</h3>
+<section id="slide-orge60bee7">
+<h3 id="orge60bee7">grep -i</h3>
 <p>
 (grep case-insensitive) 
 </p>
@@ -1293,8 +1337,8 @@ let's look at a file
 </div>
 
 </section>
-<section id="slide-org1bb42ce">
-<h3 id="org1bb42ce">grep -v</h3>
+<section id="slide-org3f4b1d8">
+<h3 id="org3f4b1d8">grep -v</h3>
 <p>
 (grep invert aka lines that do not contain) 
 </p>
@@ -1306,8 +1350,8 @@ let's look at a file
 </div>
 
 </section>
-<section id="slide-orgd72f2cc">
-<h3 id="orgd72f2cc">-E regular expression power</h3>
+<section id="slide-org556bd0b">
+<h3 id="org556bd0b">-E regular expression power</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">grep -E '^.o' haiku.txt
@@ -1330,8 +1374,8 @@ let's look at a file
 </p>
 
 </section>
-<section id="slide-org2820167">
-<h3 id="org2820167">find</h3>
+<section id="slide-orge7e734f">
+<h3 id="orge7e734f">find</h3>
 <p>
 (find files) 
 </p>
@@ -1343,8 +1387,8 @@ let's look at a file
 </div>
 
 </section>
-<section id="slide-org55ddbc0">
-<h3 id="org55ddbc0">find -type</h3>
+<section id="slide-org2ab0a11">
+<h3 id="org2ab0a11">find -type</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">find . -type d 
@@ -1364,8 +1408,8 @@ let's look at a file
 </p>
 
 </section>
-<section id="slide-org287d8bf">
-<h3 id="org287d8bf">find -name</h3>
+<section id="slide-org056f79b">
+<h3 id="org056f79b">find -name</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">find . -name *.txt
@@ -1380,8 +1424,8 @@ Expanded too early
 </p>
 
 </section>
-<section id="slide-orgab1f047">
-<h3 id="orgab1f047">find -name (proper)</h3>
+<section id="slide-org72c344a">
+<h3 id="org72c344a">find -name (proper)</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">find . -name '*.txt'
@@ -1389,8 +1433,8 @@ Expanded too early
 </div>
 
 </section>
-<section id="slide-org93b134f">
-<h3 id="org93b134f">$()</h3>
+<section id="slide-org37dd97a">
+<h3 id="org37dd97a">$()</h3>
 <p>
 (the shell executes inside the $() first) 
 </p>
@@ -1402,8 +1446,8 @@ Expanded too early
 </div>
 
 </section>
-<section id="slide-orgca32c70">
-<h3 id="orgca32c70">find + grep</h3>
+<section id="slide-orgf3a4678">
+<h3 id="orgf3a4678">find + grep</h3>
 <div class="org-src-container">
 
 <pre  class="src src-unix">grep "FE" $(find .. -name '*.pdb')
@@ -1411,11 +1455,10 @@ Expanded too early
 </div>
 
 </section>
-<section id="slide-org760d382">
-<h3 id="org760d382">Final reviews</h3>
+<section id="slide-org09717c1">
+<h3 id="org09717c1">Thank you!</h3>
 <p>
-Using grep and find on 
-<a href="https://swcarpentry.github.io/shell-novice/07-find/">https://swcarpentry.github.io/shell-novice/07-find/</a>
+That's it 
 </p>
 </section>
 </section>

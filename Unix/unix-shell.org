@@ -26,7 +26,7 @@
    + The terminal up and ready to go (with files downloaded)
    + Little, maybe no experience, with the shell 
    + Willing to ask questions 
-   + data-shell folder is on your Desktop 
+   + unix-data folder is on your Desktop 
 
 ** Quick Note 
 
@@ -74,6 +74,10 @@ This will help ensure our terminals look the same
 #+BEGIN_SRC unix 
 PS1='$ ' 
 #+END_SRC 
+and 
+#+BEGIN_SRC unix 
+cd ~/Desktop/unix-data
+#+END_SRC 
 
 ** Our first command
 
@@ -117,7 +121,7 @@ ls
 Mac and Unix - use "man" plus program (man is short for manual) 
 
 #+BEGIN_SRC unix 
-   man ls 
+man ls 
 #+END_SRC 
 
 Windows: Visit http://man.he.net/y
@@ -188,13 +192,13 @@ What will the following do?
 You can use ls to see the listing of any directory
 
 #+BEGIN_SRC unix 
-  ls data 
+  ls data-shell 
 #+END_SRC 
 
 and 
 
 #+BEGIN_SRC unix 
-  ls data/elements 
+  ls data-shell/data/elements
 #+END_SRC 
 
 ** Reset 
@@ -208,7 +212,7 @@ What directory are we all in?
 Let's move to the same location 
 
 #+BEGIN_SRC unix 
-cd ~/Desktop/data-shell 
+cd ~/Desktop/unix-data
 #+END_SRC 
 
 ** cd 
@@ -246,7 +250,7 @@ Try
 hit tab to auto complete
 
 #+BEGIN_SRC unix 
-cd ~/Desktop/data-shell 
+cd ~/Desktop/unix-data/data-shell 
 #+END_SRC
 
 ** Relative and Absolute Paths 
@@ -336,6 +340,12 @@ https://swcarpentry.github.io/shell-novice/03-create/
 * Pipes and Filters 
 ** Let's move 
 to the molecules directory
+
+#+BEGIN_SRC unix 
+cd ~/Desktop/unix-data/data-shell/molecules
+#+END_SRC
+
+
 ** wc 
 (word count) 
 
@@ -428,7 +438,7 @@ https://swcarpentry.github.io/shell-novice/04-pipefilter/
 (let's check-in on Nelle) 
 
 #+BEGIN_SRC unix 
-cd north-pacific-gyre/2012-07-03
+cd ../north-pacific-gyre/2012-07-03
 wc -l *.txt
 #+END_SRC
 
@@ -470,7 +480,7 @@ Looping our way to productivity
 ** let's get to the same place 
 
 #+BEGIN_SRC unix 
-cd ~/Desktop/data-shell/creatures/
+cd ~/Desktop/unix-data/data-shell/creatures/
 #+END_SRC
 
 ** Let's make a backup 
@@ -553,6 +563,10 @@ history | tail -n 5
 ** Nelle's Pipeline 
    move to north-pacific-gyre/2012-07-03
 
+#+BEGIN_SRC unix 
+cd ../north-pacific-gyre/2012-07-03
+#+END_SRC
+
 ** Step 1 
 
 #+BEGIN_SRC unix
@@ -589,12 +603,18 @@ https://swcarpentry.github.io/shell-novice/05-loop/
 Making the computer work for us. 
 
 ** Move to the molecules folder 
+#+BEGIN_SRC unix 
+cd ../../molecules 
+#+END_SRC
+
 
 ** create middle.sh 
 
 #+BEGIN_SRC unix
-head -n 15 octane.pdb | tail -n 5
+nano middle.sh 
 #+END_SRC
+
+add "head -n 15 octane.pdb | tail -n 5" 
 
 to run it 
 #+BEGIN_SRC unix
@@ -662,6 +682,10 @@ history | tail -n 5 > redo-figure-3.sh
 ** Back to Nelle 
 (and the north-pacific-gyre/2017-07-03/) 
 
+#+BEGIN_SRC unix
+cd ../north-pacifc-gyre/2017-07-03
+#+END_SRC
+
 Let's create a script do-stats.sh
 
 ** Our script 
@@ -700,6 +724,11 @@ https://swcarpentry.github.io/shell-novice/06-script/
 (the fun stuff)
 
 ** move to data-shell/writing 
+
+#+BEGIN_SRC unix
+cd ../../writing 
+#+END_SRC
+
 
 ** grep 
 (global regular expression print) 
@@ -810,10 +839,6 @@ wc -l $(find . -name '*.txt')
 grep "FE" $(find .. -name '*.pdb')
 #+END_SRC
 
-** Final reviews 
+** Thank you! 
 
-Using grep and find on 
-https://swcarpentry.github.io/shell-novice/07-find/
-
-
-
+That's it 

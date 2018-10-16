@@ -308,6 +308,8 @@ git add a.dat
 
 https://github.com/
 
+login and start a project 
+
 ** Creating a repo
 #+REVEAL_HTML: <img src="http://swcarpentry.github.io/git-novice/fig/github-create-repo-02.png">
 
@@ -354,10 +356,10 @@ cat mars.txt
 git pull origin master 
 #+END_SRC 
 
-
 * Collaborating 
 
 Visit 
+
 https://public.etherpad-mozilla.org/p/git-workshop
 
 and add your github username 
@@ -366,14 +368,11 @@ and add your github username
 
 https://github.com/tomhohenstein/git-workshop
 
-
-
 ** Move to our desktop 
 
 #+BEGIN_SRC unix   
 cd ~/Desktop 
 #+END_SRC 
-
 
 ** Clone a repo 
 
@@ -398,6 +397,7 @@ git status
 #+BEGIN_SRC unix   
 nano your_username.txt
 #+END_SRC 
+
 and 
 
 #+BEGIN_SRC unix   
@@ -431,5 +431,6 @@ git log --online --graph --all --decorate
 and more at: 
 https://git-scm.com/book/en/v2
 
+** Thank you! 
 
 

@@ -298,19 +298,6 @@ is gone, it is gone.
 rm  draft.txt 
 #+END_SRC
 
-** rm recursively 
-
-Hey - you probably don't want to do this. Just saying... 
-
-#+BEGIN_SRC unix 
-rm -r draft.txt 
-#+END_SRC
-
-or add -i for interactive 
-#+BEGIN_SRC unix 
-rm -r -i draft.txt 
-#+END_SRC
-
 ** mv 
 (move) (or rename) 
 
@@ -328,14 +315,6 @@ for interactive to help avoid this.
 cp quotes.txt draft.txt 
 #+END_SRC
 
-** Exercise 
-(think pair share) 
-
-Renaming Files on 
-https://swcarpentry.github.io/shell-novice/03-create/
-
-and moving and copying at
-https://swcarpentry.github.io/shell-novice/03-create/
 
 * Pipes and Filters 
 ** Let's move 
@@ -439,6 +418,11 @@ https://swcarpentry.github.io/shell-novice/04-pipefilter/
 
 #+BEGIN_SRC unix 
 cd ../north-pacific-gyre/2012-07-03
+#+END_SRC
+and
+
+
+#+BEGIN_SRC unix 
 wc -l *.txt
 #+END_SRC
 
@@ -607,7 +591,6 @@ Making the computer work for us.
 cd ../../molecules 
 #+END_SRC
 
-
 ** create middle.sh 
 
 #+BEGIN_SRC unix
@@ -712,12 +695,6 @@ bash do-stats.sh NENE*[AB].txt
 #+BEGIN_SRC unix
 bash do-stats.sh NENE*[AB].txt | wc -l 
 #+END_SRC
-
-** Exercise 
-(think pair share) 
-
-Script reading comprehension at:
-https://swcarpentry.github.io/shell-novice/06-script/
 
 
 * Finding Things 
